@@ -1,5 +1,5 @@
 /* Esse programa é responsável por simular um jogo de dominó,com 2 ou 4 jogarores em cada partida.
- Feito por:
+ Desenvolvido por:
  Fernando Schettini Github:https://github.com/FernandoSchett 
  Gabriel Souza Dunkel Github: https://github.com/gabrielsdunkel
  Orlando Mota Pires Github: github.com/orlandomotapires 
