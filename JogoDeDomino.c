@@ -21,59 +21,59 @@ void menuDoJogo(int *res){ //Função reponsável pelo menu inicial do jogo.
  
 	printf("Bem-vindo ao MELHOR jogo de dominó da AMERA-LATINA e afiliados.\n");
 	printf("Insira o número 1 para jogar ou 0 para arregar :'(\n");
-	scanf("%d", res);
+	scanf(" %d", res);
 	while(*res != 0 & *res != 1 ){
 		printf("Valor inválido.\n");
     	printf("Insira um valor válido, 1 para jogar ou 0 para arregar:\n");
-    	scanf("%d", res);
+    	scanf(" %d", res);
 	}
 	system("cls"); //Limpa o terminal.
 }
 
 void escolheOsNomesDosJogadores(int *numj, char *j1, char *j2, char *j3, char *j4){
 	printf("Quantos jogadores vao jogar?\n");
-	scanf("%d", numj);
+	scanf(" %d", numj);
 	
 	while(*numj != 2 & *numj != 4 ){
 		printf("Valor inválido.\n");
 		printf("Insira um valor válido, pode-se apenas jogar com 2 ou 4 jogadores:\n");
-    	scanf("%d", numj);
+    	scanf(" %d", numj);
 	}
 	
 	if( *numj == 4){ //4 jogadores.
 		//Recolhe o nome dos jogaores.
 		printf("Nome do primeiro jogador:\n");
-		scanf("%s", j1);
+		scanf(" %s", j1);
 		printf("Nome do segundo jogador:\n");
-		scanf("%s", j2);
+		scanf(" %s", j2);
 		printf("Nome do terceiro jogador:\n");
-		scanf("%s", j3);
+		scanf(" %s", j3);
 		printf("Nome do quarto jogador:\n");
-		scanf("%s", j4);
+		scanf(" %s", j4);
 		
 		system("cls"); //Limpa o terminal.
 		
 		//Apresenta os jogadores.
-		printf("Os melhores jogadores de dominó tem nome! Todos velhos e enrrugados, sua habilidade de dominó foram forjada nos bares mais profundos do interior do Brasil, com seus dedos tao enrrugados quando suas pancas de cerveja enormes sua batalha será lendária!\n", j1);
-		printf("Jogador némero 1: %s\n", *j1);
-		printf("Jogador némero 2: %s \n", *j2);
-		printf("Jogador némero 3: %s\n", *j3);
-		printf("Jogador némero 4: %s\n", *j4);
+		printf("Os melhores jogadores de dominó tem nome!\n");
+		printf("Jogador número 1: %s\n", *j1);
+		printf("Jogador número 2: %s\n", *j2);
+		printf("Jogador número 3: %s\n", *j3);
+		printf("Jogador número 4: %s\n", *j4);
 	}
 	
 	if( *numj == 2){ //2 jogadores.
 		//Recolhe o nome dos jogaores.
 		printf("Nome do primeiro jogador:\n");
-		scanf("%s", *j1);
+		scanf(" %s", j1);
 		printf("Nome do segundo jogador:\n");
-		scanf("%s", *j2);
+		scanf(" %s", j2);
 		
 		system("cls"); //Limpa o terminal.
 		
 		//Apresenta os jogadores.
-		printf("Os melhores jogadores de dominó tem nome! Todos velhos e enrrugados, sua habilidade de dominó foram forjada nos bares mais profundos do interior do Brasil, com seus dedos tao enrrugados quando suas pancas de cerveja enormes sua batalha será lendária!\n", j1);
-		printf("Jogador némero 1: %s\n", *j1);
-		printf("Jogador némero 2: %s \n", *j2);	
+		printf("Os melhores jogadores de dominó tem nome!\n");
+		printf("Jogador número 1: %s \n", *j1);
+		printf("Jogador número 2: %s \n", *j2);	
 	}
 }
 
@@ -97,7 +97,8 @@ int main(){
 	char j1[100], j2[100],j3[100],j4[100];
 	
 	//Começando o jogo.
-
+	//textbackground(1); // PINTA O FUNDO DO TEXTO
+	//textcolor(3);
 	menuDoJogo(&res); //Iniciando o menu jogo.
 	if (res == 0){                               //Não vai jogar/Deistencia.
 		printf("Percebi que voce desistiu. FRACO!\n"); 
