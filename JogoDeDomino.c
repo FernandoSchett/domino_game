@@ -56,8 +56,8 @@ void MenuDoJogo(char *res){ //Função reponsável pelo menu inicial do jogo.
 	printf("Insira o número 1 para jogar ou 0 para arregar :'(\n");
 	scanf(" %[^\n]s", res);
 	//printf(" |%s| ", res);
-
-	while(*res != '0' & *res != '1' ){
+	//strncmp(res, "0", 100) != 0 && strncmp(res, "1", 100) != 0
+	while(*res != "0" && *res != "1" ){
 		printf("Valor inválido.\n");
     	printf("Insira um valor válido, 1 para jogar ou 0 para arregar:\n");
 		scanf(" %[^\n]s", res);;
@@ -140,7 +140,7 @@ int main(){
 	//Começando o jogo.
 	MenuDoJogo(res); //Iniciando o menu jogo.
 	
-	if (res == '0'){  //Não vai jogar/Deistencia.
+	if (res == "0"){  //Não vai jogar/Deistencia.
 		printf("Percebi que voce desistiu. FRACO!\n"); 
 	}
 	else{      //Vai jogar.
