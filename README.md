@@ -6,5 +6,21 @@
 
 
 
+----------------------------------------------------------------------------------------------
+
+### Membros trabalhando no projeto:
+
+***Adrian Widmer***         -
+
+***Fernando Schettini***    -
+                                
+***Gabriel Souza Dunkel***  -
+                                
+***Leonardo Trinchao***     -
+                                
+***Orlando Mota***          -
+                                
+
+----------------------------------------------------------------------------------------------
 
 Pilha.h e Fila.h são duas bibliotecas criadas com o intuito de utilizar pilha e fila em C.
