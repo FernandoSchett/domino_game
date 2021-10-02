@@ -1,12 +1,22 @@
+// Esse programa é responsável por simular um jogo de dominó,com 2 ou 4 jogarores em cada partida.
+// Feito por:
+// Fernando Schettini ( o mais foda) Github:https://github.com/FernandoSchett
+
 #include<stdio.h>
 #include<string.h>
 #include <stdlib.h>
-#include"Pilha.h"
-#include"Fila.h"
-// #include <random.h>
 #include <locale.h>
+#include"Pilha.h"
+#include"Fila.h"	
 
-int menuDoJogo(int *res){ //Função reponsável pelo menu inicial do jogo.
+void sorteador(int *numj){ //Esse funcao vai sortear com base no inteiro que recebeu.
+	
+	
+	
+	
+}
+
+void menuDoJogo(int *res){ //Função reponsável pelo menu inicial do jogo.
  
 	printf("Bem-vindo ao MELHOR jogo de dominó da AMERA-LATINA e afiliados.\n");
 	printf("Insira o número 1 para jogar ou 0 para arregar :'(\n");
@@ -17,10 +27,9 @@ int menuDoJogo(int *res){ //Função reponsável pelo menu inicial do jogo.
     	scanf("%d", res);
 	}
 	system("cls"); //Limpa o terminal.
-	return res;
 }
 
-int escolheOsNomesDosJogadores(int *numj, char *j1, char *j2, char *j3, char *j4){
+void escolheOsNomesDosJogadores(int *numj, char *j1, char *j2, char *j3, char *j4){
 	printf("Quantos jogadores vao jogar?\n");
 	scanf("%d", numj);
 	while(*numj != 2 & *numj != 4 ){
@@ -44,6 +53,7 @@ int escolheOsNomesDosJogadores(int *numj, char *j1, char *j2, char *j3, char *j4
 		printf("Nome do segundo jogador:\n");
 		scanf("%s", *j2);
 	}
+	sorteador(numj);
 }
 
 typedef struct{
@@ -56,7 +66,7 @@ tp_pedra pedra32, pedra42, pedra52, pedra62, pedra33, pedra43, pedra53;
 tp_pedra pedra63, pedra44, pedra54, pedra64, pedra55, pedra65, pedra66; // Declarando todas as pecas do jogo ** NAO SEI SE VAI SER ASSIM **
 
 
-int embaralhandoPecas(){
+void embaralhandoPecas(){
 
 }
 int main(){
@@ -72,6 +82,7 @@ int main(){
 	}
 	else{                                        //Vai jogar.
 		escolheOsNomesDosJogadores(&numj, &j1, &j2, &j3, &j4);
+		
 		
 	}
 	return 0;
