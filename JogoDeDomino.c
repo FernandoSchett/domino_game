@@ -1,9 +1,9 @@
 /* Esse programa é responsável por simular um jogo de dominó,com 2 ou 4 jogarores em cada partida.
  Desenvolvido por:
- Fernando Schettini Github:https://github.com/FernandoSchett 
- Gabriel Souza Dunkel Github: https://github.com/gabrielsdunkel
- Orlando Mota Pires Github: github.com/orlandomotapires 
- Adrian Widmer Github: https://github.com/Awi-24
+ Fernando Schettini, Github:https://github.com/FernandoSchett 
+ Gabriel Souza Dunkel, Github: https://github.com/gabrielsdunkel
+ Orlando Mota Pires, Github: github.com/orlandomotapires 
+ Adrian Widmer, Github: https://github.com/Awi-24
  */
 
 
