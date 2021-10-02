@@ -50,15 +50,18 @@ void Sorteador(int *possibilidade, int *escolhido){ //Esse funcao vai sortear co
 	}
 	//printf("escolhido: %d\n", *escolhido);
 }
-void MenuDoJogo(int *res){ //Função reponsável pelo menu inicial do jogo.
+void MenuDoJogo(char *res){ //Função reponsável pelo menu inicial do jogo.
  
 	printf("Bem-vindo ao MELHOR jogo de dominó da AMERA-LATINA e afiliados.\n");
 	printf("Insira o número 1 para jogar ou 0 para arregar :'(\n");
-	scanf(" %d", res);
-	while(*res != 0 & *res != 1 ){
+	scanf(" %[^\n]s", res);
+	//printf(" |%s| ", res);
+
+	while(*res != '0' & *res != '1' ){
 		printf("Valor inválido.\n");
     	printf("Insira um valor válido, 1 para jogar ou 0 para arregar:\n");
-    	scanf(" %d", res);
+		scanf(" %[^\n]s", res);;
+    //	printf(" |%s|\n", res);
 	}
 	system("pause");
 	system("cls"); //Limpa o terminal.
@@ -131,24 +134,19 @@ void embaralhandoPecas(){
 int main(){
 	//Declarando as váriaveis.
 	setlocale(LC_ALL, "Portuguese"); //Definindo a liguagem para português.
-	int res, numj, choosen;
-	char j1[100], j2[100],j3[100],j4[100];
+	int numj, choosen;
+	char res[100], j1[100], j2[100],j3[100],j4[100];
 	
 	//Começando o jogo.
-	//textbackground(1); // PINTA O FUNDO DO TEXTO
-	//textcolor(3); //Pinta a cor da fonte nao sei usar
+	MenuDoJogo(res); //Iniciando o menu jogo.
 	
-
-	MenuDoJogo(&res); //Iniciando o menu jogo.
-	
-	if (res == 0){  //Não vai jogar/Deistencia.
+	if (res == '0'){  //Não vai jogar/Deistencia.
 		printf("Percebi que voce desistiu. FRACO!\n"); 
 	}
 	else{      //Vai jogar.
 		EscolheOsNomesDosJogadores(&numj, j1, j2, j3, j4);
 		Sorteador(&numj, &choosen); //sorteia quem comeca.
-		EscolhePrimeiro(&choosen, j1, j2, j3, j4);
-		
+		EscolhePrimeiro(&choosen, j1, j2, j3, j4);	
 	}
 	return 0;
 } 
