@@ -1,7 +1,9 @@
 /* Esse programa é responsável por simular um jogo de dominó,com 2 ou 4 jogarores em cada partida.
  Feito por:
- Fernando Schettini (o mais foda) Github:https://github.com/FernandoSchett 
- Gabriel Souza Dunkel @gabrielsdunkel */
+ Fernando Schettini Github:https://github.com/FernandoSchett 
+ Gabriel Souza Dunkel Github: https://github.com/gabrielsdunkel
+ Orlando Mota Pires Github: github.com/orlandomotapires 
+ */
 
 
 #include <stdio.h>
@@ -73,13 +75,13 @@ void EscolheOsNomesDosJogadores(int *numj, char *j1, char *j2, char *j3, char *j
 	printf("Quantos jogadores vao jogar?\n");
 	scanf(" %d", numj);
 	
-	while(*numj != 2 & *numj != 4 ){
+	while(*numj != 2 & numj != 4 ){
 		printf("Valor inválido.\n");
 		printf("Insira um valor válido, pode-se apenas jogar com 2 ou 4 jogadores:\n");
     	scanf(" %d", numj);
 	}
 	
-	if( *numj == 4){ //4 jogadores.
+	if( numj == 4){ //4 jogadores.
 		//Recolhe o nome dos jogaores.
 		printf("Nome do primeiro jogador:\n");
 		scanf(" %[^\n]s", j1);
@@ -101,7 +103,7 @@ void EscolheOsNomesDosJogadores(int *numj, char *j1, char *j2, char *j3, char *j
 		printf("Jogador número 4: %s\n", j4);
 	}
 	
-	if( *numj == 2){ //2 jogadores.
+	if( numj == 2){ //2 jogadores.
 		//Recolhe o nome dos jogaores.
 		printf("Nome do primeiro jogador:\n");
 		scanf(" %[^\n]s", j1);
