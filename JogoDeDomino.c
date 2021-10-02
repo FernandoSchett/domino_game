@@ -2,12 +2,13 @@
 // Feito por:
 // Fernando Schettini ( o mais foda) Github:https://github.com/FernandoSchett
 
-#include<stdio.h>
-#include<string.h>
+#include <stdio.h>
+#include <string.h>
 #include <stdlib.h>
 #include <locale.h>
-#include"Pilha.h"
-#include"Fila.h"	
+#include <conio.h> 
+#include "Pilha.h"
+#include "Fila.h"	
 
 void sorteador(int *numj){ //Esse funcao vai sortear com base no inteiro que recebeu.
 	
@@ -32,12 +33,15 @@ void menuDoJogo(int *res){ //Função reponsável pelo menu inicial do jogo.
 void escolheOsNomesDosJogadores(int *numj, char *j1, char *j2, char *j3, char *j4){
 	printf("Quantos jogadores vao jogar?\n");
 	scanf("%d", numj);
+	
 	while(*numj != 2 & *numj != 4 ){
 		printf("Valor inválido.\n");
 		printf("Insira um valor válido, pode-se apenas jogar com 2 ou 4 jogadores:\n");
     	scanf("%d", numj);
 	}
-	if( *numj == 4){
+	
+	if( *numj == 4){ //4 jogadores.
+		//Recolhe o nome dos jogaores.
 		printf("Nome do primeiro jogador:\n");
 		scanf("%s", j1);
 		printf("Nome do segundo jogador:\n");
@@ -46,14 +50,31 @@ void escolheOsNomesDosJogadores(int *numj, char *j1, char *j2, char *j3, char *j
 		scanf("%s", j3);
 		printf("Nome do quarto jogador:\n");
 		scanf("%s", j4);
+		
+		system("cls"); //Limpa o terminal.
+		
+		//Apresenta os jogadores.
+		printf("Os melhores jogadores de dominó tem nome! Todos velhos e enrrugados, sua habilidade de dominó foram forjada nos bares mais profundos do interior do Brasil, com seus dedos tao enrrugados quando suas pancas de cerveja enormes sua batalha será lendária!\n", j1);
+		printf("Jogador némero 1: %s\n", *j1);
+		printf("Jogador némero 2: %s \n", *j2);
+		printf("Jogador némero 3: %s\n", *j3);
+		printf("Jogador némero 4: %s\n", *j4);
 	}
-	if( *numj == 2){
+	
+	if( *numj == 2){ //2 jogadores.
+		//Recolhe o nome dos jogaores.
 		printf("Nome do primeiro jogador:\n");
 		scanf("%s", *j1);
 		printf("Nome do segundo jogador:\n");
 		scanf("%s", *j2);
+		
+		system("cls"); //Limpa o terminal.
+		
+		//Apresenta os jogadores.
+		printf("Os melhores jogadores de dominó tem nome! Todos velhos e enrrugados, sua habilidade de dominó foram forjada nos bares mais profundos do interior do Brasil, com seus dedos tao enrrugados quando suas pancas de cerveja enormes sua batalha será lendária!\n", j1);
+		printf("Jogador némero 1: %s\n", *j1);
+		printf("Jogador némero 2: %s \n", *j2);	
 	}
-	sorteador(numj);
 }
 
 typedef struct{
@@ -76,14 +97,15 @@ int main(){
 	char j1[100], j2[100],j3[100],j4[100];
 	
 	//Começando o jogo.
+
 	menuDoJogo(&res); //Iniciando o menu jogo.
 	if (res == 0){                               //Não vai jogar/Deistencia.
 		printf("Percebi que voce desistiu. FRACO!\n"); 
 	}
 	else{                                        //Vai jogar.
 		escolheOsNomesDosJogadores(&numj, &j1, &j2, &j3, &j4);
-		
-		
+	
+		sorteador(numj); //sorteia quem comeca.
 	}
 	return 0;
 } 
