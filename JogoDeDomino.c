@@ -1,23 +1,56 @@
-// Esse programa é responsável por simular um jogo de dominó,com 2 ou 4 jogarores em cada partida.
-// Feito por:
-// Fernando Schettini ( o mais foda) Github:https://github.com/FernandoSchett
+/* Esse programa é responsável por simular um jogo de dominó,com 2 ou 4 jogarores em cada partida.
+ Feito por:
+ Fernando Schettini (o mais foda) Github:https://github.com/FernandoSchett */
 
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 #include <locale.h>
 #include <conio.h> 
+#include <time.h>
 #include "Pilha.h"
 #include "Fila.h"	
 
-void sorteador(int *numj){ //Esse funcao vai sortear com base no inteiro que recebeu.
-	
-	
-	
-	
+void EscolhePrimeiro(int *escolhido, char *j1, char *j2, char *j3, char *j4){
+	switch (*escolhido){
+		case 1:
+			printf ("Jogador %s comeca!\n", j1);	
+		case 2:
+			printf ("Jogador %s comeca!\n", j2);	
+		case 3:
+			printf ("Jogador %s comeca!\n", j3);	
+		case 4:	
+			printf ("Jogador %s comeca!\n", j4);	
+	}
+	printf ("A ordem do escolhido sempre segue no sentido crescente! 1 -> 2 -> 3 -> 4\n");	
+	system("pause");
+	system("cls"); 
+
 }
 
-void menuDoJogo(int *res){ //Função reponsável pelo menu inicial do jogo.
+void Sorteador(int *possibilidade, int *escolhido){ //Esse funcao vai sortear com base no inteiro que recebeu.
+	int random, nrandom;
+	long double	chance;
+	
+	srand(time (NULL)); //Generate seed for rand(),based in your pc time.
+	//printf("%d\n", *possibilidade);
+	random = (rand() % 100); //Generate random number in range 1-100.
+	//printf("random: %d\n", random);
+	chance =  100 / *possibilidade; //chance of getting any number.
+	//printf("chance: %lf \n", chance);
+
+	nrandom = 0;
+	*escolhido = 0;
+	
+	while(nrandom < random){ //Look for the range.
+		nrandom = nrandom  + chance;
+	//	printf("escolhido: %d\n", *escolhido);
+	//	printf("nrandom: %d\n", nrandom);
+		*escolhido = *escolhido + 1;	
+	}
+	//printf("escolhido: %d\n", *escolhido);
+}
+void MenuDoJogo(int *res){ //Função reponsável pelo menu inicial do jogo.
  
 	printf("Bem-vindo ao MELHOR jogo de dominó da AMERA-LATINA e afiliados.\n");
 	printf("Insira o número 1 para jogar ou 0 para arregar :'(\n");
@@ -27,10 +60,11 @@ void menuDoJogo(int *res){ //Função reponsável pelo menu inicial do jogo.
     	printf("Insira um valor válido, 1 para jogar ou 0 para arregar:\n");
     	scanf(" %d", res);
 	}
+	system("pause");
 	system("cls"); //Limpa o terminal.
 }
 
-void escolheOsNomesDosJogadores(int *numj, char *j1, char *j2, char *j3, char *j4){
+void EscolheOsNomesDosJogadores(int *numj, char *j1, char *j2, char *j3, char *j4){
 	printf("Quantos jogadores vao jogar?\n");
 	scanf(" %d", numj);
 	
@@ -43,38 +77,42 @@ void escolheOsNomesDosJogadores(int *numj, char *j1, char *j2, char *j3, char *j
 	if( *numj == 4){ //4 jogadores.
 		//Recolhe o nome dos jogaores.
 		printf("Nome do primeiro jogador:\n");
-		scanf(" %s", j1);
+		scanf(" %[^\n]s", j1);
 		printf("Nome do segundo jogador:\n");
-		scanf(" %s", j2);
+		scanf(" %[^\n]s", j2);
 		printf("Nome do terceiro jogador:\n");
-		scanf(" %s", j3);
+		scanf(" %[^\n]s", j3);
 		printf("Nome do quarto jogador:\n");
-		scanf(" %s", j4);
+		scanf(" %[^\n]s", j4);
 		
+		system("pause");
 		system("cls"); //Limpa o terminal.
 		
 		//Apresenta os jogadores.
 		printf("Os melhores jogadores de dominó tem nome!\n");
-		printf("Jogador número 1: %s\n", *j1);
-		printf("Jogador número 2: %s\n", *j2);
-		printf("Jogador número 3: %s\n", *j3);
-		printf("Jogador número 4: %s\n", *j4);
+		printf("Jogador número 1: %s\n", j1);
+		printf("Jogador número 2: %s\n", j2);
+		printf("Jogador número 3: %s\n", j3);
+		printf("Jogador número 4: %s\n", j4);
 	}
 	
 	if( *numj == 2){ //2 jogadores.
 		//Recolhe o nome dos jogaores.
 		printf("Nome do primeiro jogador:\n");
-		scanf(" %s", j1);
+		scanf(" %[^\n]s", j1);
 		printf("Nome do segundo jogador:\n");
-		scanf(" %s", j2);
+		scanf(" %[^\n]s", j2);
 		
+		system("pause");
 		system("cls"); //Limpa o terminal.
 		
 		//Apresenta os jogadores.
 		printf("Os melhores jogadores de dominó tem nome!\n");
-		printf("Jogador número 1: %s \n", *j1);
-		printf("Jogador número 2: %s \n", *j2);	
+		printf("Jogador número 1: %s \n", j1);
+		printf("Jogador número 2: %s \n", j2);	
 	}
+	system("pause");
+	system("cls"); 
 }
 
 typedef struct{
@@ -93,20 +131,24 @@ void embaralhandoPecas(){
 int main(){
 	//Declarando as váriaveis.
 	setlocale(LC_ALL, "Portuguese"); //Definindo a liguagem para português.
-	int res, numj;
+	int res, numj, choosen;
 	char j1[100], j2[100],j3[100],j4[100];
 	
 	//Começando o jogo.
 	//textbackground(1); // PINTA O FUNDO DO TEXTO
-	//textcolor(3);
-	menuDoJogo(&res); //Iniciando o menu jogo.
-	if (res == 0){                               //Não vai jogar/Deistencia.
+	//textcolor(3); //Pinta a cor da fonte nao sei usar
+	
+
+	MenuDoJogo(&res); //Iniciando o menu jogo.
+	
+	if (res == 0){  //Não vai jogar/Deistencia.
 		printf("Percebi que voce desistiu. FRACO!\n"); 
 	}
-	else{                                        //Vai jogar.
-		escolheOsNomesDosJogadores(&numj, &j1, &j2, &j3, &j4);
-	
-		sorteador(numj); //sorteia quem comeca.
+	else{      //Vai jogar.
+		EscolheOsNomesDosJogadores(&numj, j1, j2, j3, j4);
+		Sorteador(&numj, &choosen); //sorteia quem comeca.
+		EscolhePrimeiro(&choosen, j1, j2, j3, j4);
+		
 	}
 	return 0;
 } 
