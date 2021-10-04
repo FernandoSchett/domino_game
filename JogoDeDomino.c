@@ -125,7 +125,7 @@ void EscolheOsNomesDosJogadores(int *numj, char *j1, char *j2, char *j3, char *j
 }
 
 typedef struct{
-  int top, bottom; //EITA BIXO SEXO
+  int top, bottom; //EITA BIXO SEXOO
 }tp_pedra;
 
 tp_pedra pedra00, pedra01, pedra02, pedra03, pedra04, pedra05, pedra06;
