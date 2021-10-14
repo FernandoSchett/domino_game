@@ -14,8 +14,8 @@
 #include <locale.h>
 #include <conio.h> 
 #include <time.h>
-#include "Pilha.h"
-#include "Fila.h"	
+#include "pilha.h"
+#include "fila.h"	
 
 void EscolhePrimeiro(int *escolhido, char *j1, char *j2, char *j3, char *j4){
 	switch (*escolhido){
@@ -77,13 +77,13 @@ void EscolheOsNomesDosJogadores(int *numj, char *j1, char *j2, char *j3, char *j
 	printf("Quantos jogadores vao jogar?\n");
 	scanf(" %d", numj);
 	
-	while(*numj != 2 & numj != 4 ){
+	while(*numj != 2 && *numj != 4 ){
 		printf("Valor inválido.\n");
 		printf("Insira um valor válido, pode-se apenas jogar com 2 ou 4 jogadores:\n");
     	scanf(" %d", numj);
 	}
 	
-	if( numj == 4){ //4 jogadores.
+	if( *numj == 4){ //4 jogadores.
 		//Recolhe o nome dos jogaores.
 		printf("Nome do primeiro jogador:\n");
 		scanf(" %[^\n]s", j1);
@@ -105,7 +105,7 @@ void EscolheOsNomesDosJogadores(int *numj, char *j1, char *j2, char *j3, char *j
 		printf("Jogador número 4: %s\n", j4);
 	}
 	
-	if( numj == 2){ //2 jogadores.
+	if( *numj == 2){ //2 jogadores.
 		//Recolhe o nome dos jogaores.
 		printf("Nome do primeiro jogador:\n");
 		scanf(" %[^\n]s", j1);
