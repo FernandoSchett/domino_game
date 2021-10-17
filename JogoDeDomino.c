@@ -125,19 +125,23 @@ void EscolheOsNomesDosJogadores(int *numj, char *j1, char *j2, char *j3, char *j
 }
 
 typedef struct{
-  int top, bottom; //EITA BIXO SEXOO
+	int esquerda;
+	int direita;
 }tp_pedra;
 
+/*
 tp_pedra pedra00, pedra01, pedra02, pedra03, pedra04, pedra05, pedra06;
 tp_pedra pedra11, pedra21, pedra31, pedra41, pedra51, pedra61, pedra22;
 tp_pedra pedra32, pedra42, pedra52, pedra62, pedra33, pedra43, pedra53; 
-tp_pedra pedra63, pedra44, pedra54, pedra64, pedra55, pedra65, pedra66; // Declarando todas as pecas do jogo ** NAO SEI SE VAI SER ASSIM **
+tp_pedra pedra63, pedra44, pedra54, pedra64, pedra55, pedra65, pedra66; // Declarando todas as pecas do jogo ** NAO SEI SE VAI SER ASSIM *
+*/
 
 
 void embaralhandoPecas(){
 
 }
 int main(){
+	tp_pedra pecas[28];
 	//Declarando as váriaveis.
 	setlocale(LC_ALL, "Portuguese"); //Definindo a liguagem para português.
 	int numj, choosen;
