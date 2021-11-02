@@ -13,10 +13,10 @@
 #include <locale.h>
 #include <conio.h> 
 #include <time.h>
+#include <Windows.h>
 #include "pilhaMonte.h"
 #include "fila.h"	
 #include "ListaSEncadeada.h"
-#include <Windows.h>
 
 	typedef struct{
 		int esquerda, direita; 
@@ -54,7 +54,6 @@ void EscolhePrimeiro(int *escolhido, tp_jogador *j1, tp_jogador *j2, tp_jogador 
 
 	system("pause");
 	system("cls"); 
-
 }
 
 void Sorteador(int *possibilidade, int *escolhido){ //Esse funcao vai sortear com base no inteiro que recebeu.
@@ -90,7 +89,7 @@ void MenuDoJogo(int *res){ //Função reponsável pelo menu inicial do jogo.
 	while((*res != 0) && (*res != 1) ){
 		printf("Valor inválido.\n");
     	printf("Insira um valor válido, 1 para jogar ou 0 para arregar:\n");
-		scanf(" %d", res);;
+		scanf(" %d", res);
     //	printf(" |%s|\n", res);
 	}
 	system("pause");
@@ -148,136 +147,48 @@ void EscolheOsNomesDosJogadores(int *numj, tp_jogador *j1, tp_jogador *j2, tp_jo
 	system("cls"); 
 }
 
-/*
- tp_pedra pedra00, pedra01, pedra02, pedra03, pedra04, pedra05, pedra06;
-tp_pedra pedra11, pedra21, pedra31, pedra41, pedra51, pedra61, pedra22;
-tp_pedra pedra32, pedra42, pedra52, pedra62, pedra33, pedra43, pedra53; 
- tp_pedra pedra63, pedra44, pedra54, pedra64, pedra55, pedra65, pedra66;
-*/
 
-void startamonte(tp_pilha *monte){ //Funcao que vai definir o valor de cada ladeo da peca dentor do vetor.
-	// int contGeral, cont, numerodapeca;
-	// contGeral = 0;
-	// cont = 0;
-	// numerodapeca = 6;
-	tp_pedra dummy;
+void startamonte(tp_pilhaM *monte){ //Funcao que vai definir o valor de cada ladeo da peca dentor do vetor.
+	tp_itemM dummy;
 	int i, j;
 	inicializa_pilha(monte);
-	dummy.esquerda = 2;
-	dummy.direita = 5;
+	dummy.esquerda = i;
+	dummy.direita = j;
 	push(monte, dummy);
 	
-
-
-	// while(numerodapeca > -1){	// Preenche a parte esquerda das pecas
- 	// 	while(cont < (numerodapeca + 1)){
- 	// 		monte[contGeral].esquerda = numerodapeca;
-	// 		//printf("%d ", monte[contGeral].esquerda);
- 	// 		contGeral ++;
- 	// 		cont ++;
- 	// 	}
- 	// cont = 0;
- 	// numerodapeca--;
-	// }
-	// //printf("\n");
-	// contGeral = 0;
-	// cont = 7;
-	// numerodapeca = 0;
-	
-	// while(cont > 0){ // Preenche a parte direita das pecas.
-	// 	while(numerodapeca < cont){
- 	// 		monte[contGeral].direita = numerodapeca;
-	// 		//printf("%d ", monte[contGeral].direita);
-	// 		numerodapeca++;
-	// 		contGeral++;
-	// 	}
-	// cont--;
-	// numerodapeca = 0;
-	// }
-
 }
 
-void sorteiaomonte(tp_pilha *monte){ //Funcao que vai embaralhar as pecas dentro de um pilha.
-	int peca, peca1,cont,num;
-	tp_pedra aux;
-	cont = 0;
-	num = 28;
-	//inicializa_pilha(&monte);
+void sorteiaomonte(tp_pilhaM *monte){ //Funcao que vai embaralhar as pecas dentro de um pilha.
+	int peca, peca1, cont=0, num=28;
+	tp_itemM aux;
 
-	
-		// while(cont< 500){	
-		
-	  // 	Sorteador(&num, &peca);
-	  // 	//printf("%d ", peca);
-	  // 	Sorteador(&num, &peca1);
-	  // 	//printf("%d ", peca1);
-	  // 	//printf("\n");
-	  // 	aux = monte[peca];
-	 	// monte[peca] = monte[peca1];
-	 	// monte[peca1] = aux;
-	  // 	cont++;
-	  // }
 		srand(time(NULL));
 		for(int i = 0; i < 500; i++){
 			peca = rand()%28;
 			peca1 = rand()%28;
-			aux = monte[peca];
-	 		monte[peca] = monte[peca1];
-	 	 	monte[peca1] = aux;
+			aux = monte->item[peca];
+	 		monte->item[peca] = monte->item[peca1];
+	 	 	monte->item[peca1] = aux;
 		}
-		
-	cont = 0;
+
 	 while(cont < 28){
-	 	printf("%d ", monte[cont].esquerda);
+	 	printf("%d ", monte->item[cont].esquerda);
 	 	cont++;
 	 }
 	 printf("\n");
 	 cont = 0;
 	 	while(cont < 28){
-	 	printf("%d ", monte[cont].direita);
+	 	printf("%d ", monte->item[cont].direita);
 	 	cont++;
 	 }
 }
 
-// void distribuir(int *numj ,tp_pedra *monte, tp_jogador *j1, tp_jogador *j2, tp_jogador *j3, tp_jogador *j4){
-// 	int cont;	
-// 	cont = 0;
-// 	for(int i = 0; i < 28; i++){
-		
-// 	}
-// 	while(cont < 27){
-// 		for()
-// 			if(*numj == 2){
-// 				j1->mao[n] = monte[cont];
-// 				j2->mao[n] = monte[cont];
-							
-// 			}
-// 			cont++;
-// 			if(*numj ==4){
-// 				j1->mao[0] = monte[cont];
-// 				j2->mao[0] = monte[cont];
-// 				j3->mao[0] = monte[cont];
-// 				j4->mao[0] = monte[cont];
-
-
-
-// 			}
-// 		cont++;
-// 	}
-// }
 int main(){
 	//Declarando as váriaveis.
 	setlocale(LC_ALL, "Portuguese"); //Definindo a liguagem para português.
 	int numj, choosen, res;
 	tp_jogador j1, j2, j3, j4;
-	tp_pilha monte;
-
- 		// EscolheOsNomesDosJogadores(&numj, &j1, &j2, &j3, &j4);
-		// Sorteador(&numj, &choosen); //sorteia quem comeca.
-		// printf("O escolhido: %d\n", choosen);
-		// EscolhePrimeiro(&choosen, &j1, &j2, &j3, &j4);
-		// system("pause");
-	//Começando o jogo.
+	tp_pilhaM monte;
 	MenuDoJogo(&res); //Iniciando o menu jogo.
 	
 	if (res == 0){  //Não vai jogar/Deistencia.
