@@ -11,18 +11,18 @@ typedef struct{
 	}tp_pedra;
 
  typedef tp_pedra 
-     tp_item;
+     tp_itema;
 
 typedef struct {
     char name[100];
     int QntPecas;
-    tp_item mao[21];
+    tp_itema mao[21];
 }tp_jogador;
 
 
 typedef struct {
     int topo;  //guarda a posição do vetor onde está o elemento do topo
-    tp_item item[MAX];  //vetor de max elementos (100)
+    tp_itema item[MAX];  //vetor de max elementos (100)
 } tp_pilha;
 
 void inicializa_pilha(tp_pilha *p){
@@ -43,7 +43,7 @@ int pilha_cheia(tp_pilha *p){
     }
 }
 
-int push(tp_pilha *p, tp_item e){
+int push(tp_pilha *p, tp_itema e){
     if (pilha_cheia(p)==1) return 0; // da falha
     p -> topo++; //aumenta  a posição ja q n pd inser4ir na posição -1 e n sobrescrever o resto
     p -> item[p->topo] = e; //insere conteudo da variavel e
@@ -51,14 +51,14 @@ int push(tp_pilha *p, tp_item e){
 }
 
 //smp q tiver pop tem q ter uma var aux
-int pop(tp_pilha *p, tp_item *e){
+int pop(tp_pilha *p, tp_itema *e){
     if (pilha_vazia(p)) return 0; //falha
     *e = p-> item[p->topo];
     p -> topo--;
     return 1;
 }
 
-int top(tp_pilha *p, tp_item *e) {
+int top(tp_pilha *p, tp_itema *e) {
     if (pilha_vazia(p)) return 0; //falha
     *e = p-> item[p->topo];
     return 1;
@@ -66,7 +66,7 @@ int top(tp_pilha *p, tp_item *e) {
 
 //n pode ser ponteiro pq senão no final a pilha vai ficar vazia, logo tem q ser copia
 void imprime_pilha(tp_pilha p){
-    tp_item e;
+    tp_itema e;
     printf("\n");
     while(!pilha_vazia(&p)){
         pop(&p, &e);

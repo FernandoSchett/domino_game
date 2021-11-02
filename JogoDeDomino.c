@@ -163,8 +163,8 @@ void startamonte(tp_pilha *monte){ //Funcao que vai definir o valor de cada lade
 	tp_pedra dummy;
 	int i, j;
 	inicializa_pilha(monte);
-	dummy.esquerda = i;
-	dummy.direita = j;
+	dummy.esquerda = 2;
+	dummy.direita = 5;
 	push(monte, dummy);
 	
 
