@@ -15,39 +15,34 @@
 #include <time.h>
 #include <Windows.h>
 #include "pilhaMonte.h"
-#include "fila.h"	
-#include "ListaSEncadeada.h"
-
-	typedef struct{
-		int esquerda, direita; 
-	}tp_pedra;  
+#include "ListaSEncadeada.h" 
 
 	typedef struct{
 		char name[100];
 		int QntPecas;
-		tp_pedra mao[21];
+		tp_itemM mao[21];
 	}tp_jogador;
 
-void EscolhePrimeiro(int *escolhido, tp_jogador *j1, tp_jogador *j2, tp_jogador *j3, tp_jogador *j4){
+void EscolheOrdemJogadores(int *escolhido, tp_jogador *j1, tp_jogador *j2, tp_jogador *j3, tp_jogador *j4){
 	switch (*escolhido){
 		case 1:
 			printf ("Jogador %s comeca!\n", j1->name);
-				printf ("A ordem do escolhido sempre segue no sentido crescente!\nPrimeiro -> %s \nSegundo -> %s \nTerceiro-> %s\nQuarto -> %s", j1->name, j2->name, j3->name, j4->name);	
+				printf ("A ordem do escolhido sempre segue no sentido crescente!\nPrimeiro -> %s \nSegundo -> %s \nTerceiro-> %s\nQuarto -> %s\n", j1->name, j2->name, j3->name, j4->name);	
 
 			break;		
 		case 2:
 			printf ("Jogador %s comeca!\n", j2->name);
-				printf ("A ordem do escolhido sempre segue no sentido crescente!\nPrimeiro -> %s \nSegundo -> %s \nTerceiro-> %s\nQuarto -> %s", j2->name, j3->name, j4->name, j1->name);	
+				printf ("A ordem do escolhido sempre segue no sentido crescente!\nPrimeiro -> %s \nSegundo -> %s \nTerceiro-> %s\nQuarto -> %s\n", j2->name, j3->name, j4->name, j1->name);	
 
 			break;
 		case 3:
 			printf ("Jogador %s comeca!\n", j3->name);
-				printf ("A ordem do escolhido sempre segue no sentido crescente!\nPrimeiro -> %s \nSegundo -> %s \nTerceiro-> %s\nQuarto -> %s", j3->name, j4->name, j1->name, j2->name);	
+				printf ("A ordem do escolhido sempre segue no sentido crescente!\nPrimeiro -> %s \nSegundo -> %s \nTerceiro-> %s\nQuarto -> %s\n", j3->name, j4->name, j1->name, j2->name);	
 
 			break;	
 		case 4:	
 			printf ("Jogador %s comeca!\n", j4->name);	
-				printf ("A ordem do escolhido sempre segue no sentido crescente!\nPrimeiro -> %s \nSegundo -> %s \nTerceiro-> %s\nQuarto -> %s", j4->name, j1->name, j2->name, j3->name);	
+				printf ("A ordem do escolhido sempre segue no sentido crescente!\nPrimeiro -> %s \nSegundo -> %s \nTerceiro-> %s\nQuarto -> %s\n", j4->name, j1->name, j2->name, j3->name);	
 
 			break;
 	}
@@ -57,7 +52,7 @@ void EscolhePrimeiro(int *escolhido, tp_jogador *j1, tp_jogador *j2, tp_jogador 
 }
 
 void Sorteador(int *possibilidade, int *escolhido){ //Esse funcao vai sortear com base no inteiro que recebeu.
-	int random, nrandom, choosen;
+	int random, nrandom;
 	float chance;
 	
 	//srand(time (NULL)); //Generate seed for rand(),based in your pc time.
@@ -109,13 +104,13 @@ void EscolheOsNomesDosJogadores(int *numj, tp_jogador *j1, tp_jogador *j2, tp_jo
 	if( *numj == 4){ //4 jogadores.
 		//Recolhe o nome dos jogaores.
 		printf("Nome do primeiro jogador:\n");
-		scanf(" %[^\n]s", &j1->name);
+		scanf(" %[^\n]s", j1->name);
 		printf("Nome do segundo jogador:\n");
-		scanf(" %[^\n]s", &j2->name);
+		scanf(" %[^\n]s", j2->name);
 		printf("Nome do terceiro jogador:\n");
-		scanf(" %[^\n]s", &j3->name);
+		scanf(" %[^\n]s", j3->name);
 		printf("Nome do quarto jogador:\n");
-		scanf(" %[^\n]s", &j4->name);
+		scanf(" %[^\n]s", j4->name);
 		
 		system("pause");
 		system("cls"); //Limpa o terminal.
@@ -131,22 +126,21 @@ void EscolheOsNomesDosJogadores(int *numj, tp_jogador *j1, tp_jogador *j2, tp_jo
 	if(*numj == 2){ //2 jogadores.
 		//Recolhe o nome dos jogaores.
 		printf("Nome do primeiro jogador:\n");
-		scanf(" %[^\n]s", &j1->name);
+		scanf(" %[^\n]s", j1->name);
 		printf("Nome do segundo jogador:\n");
-		scanf(" %[^\n]s", &j2->name);
+		scanf(" %[^\n]s", j2->name);
 		
 		system("pause");
 		system("cls"); //Limpa o terminal.
 		
 		//Apresenta os jogadores.
 		printf("Os melhores jogadores de dominó tem nome!\n");
-		printf("Jogador número 1: %s \n", &j1->name);
-		printf("Jogador número 2: %s \n", &j2->name);	
+		printf("Jogador número 1: %s \n", j1->name);
+		printf("Jogador número 2: %s \n", j2->name);	
 	}
 	system("pause");
 	system("cls"); 
 }
-
 
 void startamonte(tp_pilhaM *monte){ //Funcao que vai definir o valor de cada ladeo da peca dentor do vetor.
 	tp_itemM dummy;
@@ -159,7 +153,7 @@ void startamonte(tp_pilhaM *monte){ //Funcao que vai definir o valor de cada lad
 }
 
 void sorteiaomonte(tp_pilhaM *monte){ //Funcao que vai embaralhar as pecas dentro de um pilha.
-	int peca, peca1, cont=0, num=28;
+	int peca, peca1, cont=0;
 	tp_itemM aux;
 
 		srand(time(NULL));
@@ -183,23 +177,23 @@ void sorteiaomonte(tp_pilhaM *monte){ //Funcao que vai embaralhar as pecas dentr
 	 }
 }
 
+int distribuir(){
+}
+
 int main(){
-	//Declarando as váriaveis.
 	setlocale(LC_ALL, "Portuguese"); //Definindo a liguagem para português.
-	int numj, choosen, res;
+	int numj, choosen, res; //Declarando as váriaveis.
 	tp_jogador j1, j2, j3, j4;
 	tp_pilhaM monte;
 	MenuDoJogo(&res); //Iniciando o menu jogo.
 	
-	if (res == 0){  //Não vai jogar/Deistencia.
-		printf("Percebi que voce desistiu. FRACO!\n"); 
-	}
-	else{      //Vai jogar.
+	if (res){	//Vai jogar.
 		EscolheOsNomesDosJogadores(&numj, &j1, &j2, &j3, &j4);
 		Sorteador(&numj, &choosen); //sorteia quem comeca.
-		EscolhePrimeiro(&choosen, &j1, &j2, &j3, &j4);
-		startamonte(&monte);	
-		distribuir(&numj, &monte, &j1, &j2, &j3, &j4);
+		EscolheOrdemJogadores(&choosen, &j1, &j2, &j3, &j4);
+		startamonte(&monte);
 	}
-	return 0;              // :(
+	else printf("Percebi que voce desistiu. FRACO!\n"); //Não vai jogar/Deistencia. 	
+	
+	return 0;           
 }

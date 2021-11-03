@@ -14,13 +14,6 @@ typedef struct{
      tp_itemM;
 
 typedef struct {
-    char name[100];
-    int QntPecas;
-    tp_itemM mao[21];
-}tp_jogador;
-
-
-typedef struct {
     int topo;  //guarda a posição do vetor onde está o elemento do topo
     tp_itemM item[MAX];  //vetor de max elementos (100)
 } tp_pilhaM;
@@ -64,12 +57,16 @@ int top(tp_pilhaM *p, tp_itemM *e) {
     return 1;
 }
 
-void imprime_pilha(tp_pilhaM p){
+void imprime_pilha(tp_pilhaM  p){
     tp_itemM e;
+    int g;
     printf("\n");
     while(!pilha_vazia(&p)){
         pop(&p, &e);
-        printf("%tp_pedra ", e);
+        g = e.direita;
+        printf("%d ", g);
+        g=e.esquerda;
+         printf("%d ", g);
     }
 }
 

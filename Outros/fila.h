@@ -1,6 +1,5 @@
 #ifndef FILA_H   //boa pratica, nome da biblioteca_h
 #define FILA_H
-
 #include <stdio.h>
 #define MAX 100
 
