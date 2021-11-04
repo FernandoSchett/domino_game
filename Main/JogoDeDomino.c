@@ -159,6 +159,7 @@ void EscolheOsNomesDosJogadores(int *numj, tp_jogador *j1, tp_jogador *j2, tp_jo
 
 void startamonte(tp_itemM *monteInicial){ //Funcao que vai definir o valor de cada ladeo da peca dentor do vetor.
 	 int numerodapeca=6, cont=0, contGeral=0;
+
 	 while(numerodapeca > -1){	// Preenche a parte esquerda das pecas
  	 	while(cont < (numerodapeca + 1)){
  	 		monteInicial[contGeral].esquerda = numerodapeca;
@@ -199,16 +200,16 @@ void sorteiaomonte(tp_itemM *monteInicial){ //Funcao que vai embaralhar as pecas
 	 	 	monteInicial[peca1] = aux;
 		}
 
-	  // while(cont < 28){ // TESTA PRA VER SE O MONTE TA SENDO SORTEADO
-	  // 	printf("%d ", monteInicial[cont].esquerda);
-	  // 	cont++;
-	  // }
-	  // printf("\n");
-	  // cont = 0;
-	  // 	while(cont < 28){
-	  // 	printf("%d ", monteInicial[cont].direita);
-	  // 	cont++;
-	  // }
+	  while(cont < 28){ // TESTA PRA VER SE O MONTE TA SENDO SORTEADO
+	  	printf("%d ", monteInicial[cont].esquerda);
+	  	cont++;
+	  }
+	  printf("\n");
+	  cont = 0;
+	  	while(cont < 28){
+	  	printf("%d ", monteInicial[cont].direita);
+	  	cont++;
+	  }
 }
 
 void distribuir_monte(tp_itemM *monteInicial, tp_pilhaM *monteTrue, tp_jogador *j1, tp_jogador *j2, tp_jogador *j3, tp_jogador *j4, int numj){
@@ -219,13 +220,13 @@ void distribuir_monte(tp_itemM *monteInicial, tp_pilhaM *monteTrue, tp_jogador *
 	j3->QntPecas = 0;
 	j4->QntPecas = 0;
 
-	cont=0;
-	while(cont<28){
-	g = monteInicial[cont].esquerda;
-	s = monteInicial[cont].direita;
-	printf("%d %d", g, s);
-	cont++;
-	}
+	// cont=0;
+	// while(cont<28){
+	// g = monteInicial[cont].esquerda;
+	// s = monteInicial[cont].direita;
+	// printf("%d %d", g, s);
+	// cont++;
+	// }
 
 	while(cont<28){
 		k = monteInicial[cont];
