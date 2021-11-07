@@ -275,71 +275,71 @@ printf("Teste 1\n");
 		}
 	}
 
-	cont=0;
-	if(numj==2){ // MOSTRA AS PEÇAS PRA VER SE TA CERTO
-		char nome1[100], nome2[100];
-		printf("Nome jogador 1: %s\n", j1->name);
-		printf("Quantidade de pecas jogador 1: %d\n", j1->QntPecas);
-		while(cont<7){
-			printf("%d ", j1->mao[cont].esquerda);
-			printf("%d ", j1->mao[cont].direita);
-			cont++;
-		}
+	// cont=0;
+	// if(numj==2){ // MOSTRA AS PEÇAS PRA VER SE TA CERTO
+	// 	char nome1[100], nome2[100];
+	// 	printf("Nome jogador 1: %s\n", j1->name);
+	// 	printf("Quantidade de pecas jogador 1: %d\n", j1->QntPecas);
+	// 	while(cont<7){
+	// 		printf("%d ", j1->mao[cont].esquerda);
+	// 		printf("%d ", j1->mao[cont].direita);
+	// 		cont++;
+	// 	}
 
-		printf("\n");
+	// 	printf("\n");
 	
-		cont=0;
-		printf("Nome jogador 2: %s\n", j2->name);
-		printf("Quantidade de pecas jogador 2: %d\n", j2->QntPecas);
-		while(cont<7){
-			printf("%d ", j2->mao[cont].esquerda);
-			printf("%d ", j2->mao[cont].direita);
-			cont++;
-		}
-		printf("\n");
-	}
+	// 	cont=0;
+	// 	printf("Nome jogador 2: %s\n", j2->name);
+	// 	printf("Quantidade de pecas jogador 2: %d\n", j2->QntPecas);
+	// 	while(cont<7){
+	// 		printf("%d ", j2->mao[cont].esquerda);
+	// 		printf("%d ", j2->mao[cont].direita);
+	// 		cont++;
+	// 	}
+	// 	printf("\n");
+	// }
 
-	cont=0;
-	if(numj==4){ // MOSTRA AS PEÇAS PRA VER SE TA CERTO
-		char nome1[100], nome2[100], nome3[100], nome4[100];
-		printf("Nome jogador 1: %s\n", j1->name);
-		printf("Quantidade de pecas jogador 1: %d\n", j1->QntPecas);
-		while(cont<7){
-			printf("%d ", j1->mao[cont].esquerda);
-			printf("%d ", j1->mao[cont].direita);
-			cont++;
-		}
+	// cont=0;
+	// if(numj==4){ // MOSTRA AS PEÇAS PRA VER SE TA CERTO
+	// 	char nome1[100], nome2[100], nome3[100], nome4[100];
+	// 	printf("Nome jogador 1: %s\n", j1->name);
+	// 	printf("Quantidade de pecas jogador 1: %d\n", j1->QntPecas);
+	// 	while(cont<7){
+	// 		printf("%d ", j1->mao[cont].esquerda);
+	// 		printf("%d ", j1->mao[cont].direita);
+	// 		cont++;
+	// 	}
 
-		printf("\n");
-		cont=0;
-		printf("Nome jogador 2: %s\n", j2->name);
-		printf("Quantidade de pecas jogador 2: %d\n", j2->QntPecas);
-		while(cont<7){
-			printf("%d ", j2->mao[cont].esquerda);
-			printf("%d ", j2->mao[cont].direita);
-			cont++;
-		}
+	// 	printf("\n");
+	// 	cont=0;
+	// 	printf("Nome jogador 2: %s\n", j2->name);
+	// 	printf("Quantidade de pecas jogador 2: %d\n", j2->QntPecas);
+	// 	while(cont<7){
+	// 		printf("%d ", j2->mao[cont].esquerda);
+	// 		printf("%d ", j2->mao[cont].direita);
+	// 		cont++;
+	// 	}
 
-		printf("\n");
-		cont=0;
-		printf("Nome jogador 3: %s\n", j3->name);
-		printf("Quantidade de pecas jogador 3: %d\n", j3->QntPecas);
-		while(cont<7){
-			printf("%d ", j3->mao[cont].esquerda);
-			printf("%d ", j3->mao[cont].direita);
-			cont++;
-		}
+	// 	printf("\n");
+	// 	cont=0;
+	// 	printf("Nome jogador 3: %s\n", j3->name);
+	// 	printf("Quantidade de pecas jogador 3: %d\n", j3->QntPecas);
+	// 	while(cont<7){
+	// 		printf("%d ", j3->mao[cont].esquerda);
+	// 		printf("%d ", j3->mao[cont].direita);
+	// 		cont++;
+	// 	}
 
-		printf("\n");
-		cont=0;
-		printf("Nome jogador 4: %s\n", j4->name);
-		printf("Quantidade de pecas jogador 4: %d\n", j4->QntPecas);
-		while(cont<7){
-			printf("%d ", j4->mao[cont].esquerda);
-			printf("%d ", j4->mao[cont].direita);
-			cont++;
-		}	
-	}
+	// 	printf("\n");
+	// 	cont=0;
+	// 	printf("Nome jogador 4: %s\n", j4->name);
+	// 	printf("Quantidade de pecas jogador 4: %d\n", j4->QntPecas);
+	// 	while(cont<7){
+	// 		printf("%d ", j4->mao[cont].esquerda);
+	// 		printf("%d ", j4->mao[cont].direita);
+	// 		cont++;
+	// 	}	
+	// }
 }
 
 int main(){
