@@ -59,15 +59,14 @@ int top(tp_pilhaM *p, tp_itemM *e) {
 
 void imprime_pilha(tp_pilhaM  p){
     tp_itemM e;
-    int g;
-    printf("\n");
+    int g, k;
     while(!pilha_vazia(&p)){
         pop(&p, &e);
         g = e.direita;
-        printf("%d ", g);
-        g=e.esquerda;
-         printf("%d ", g);
+        k = e.esquerda;
+        printf("%d|%d ", k, g);
     }
+    printf("\n");
 }
 
 

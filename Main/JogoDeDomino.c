@@ -19,7 +19,7 @@
 	typedef struct{
 		char name[100];
 		int QntPecas;
-		tp_itemM mao[21];
+		tp_pilhaM mao;
 	}tp_jogador;
 
 void EscolheOrdemJogadores(int *escolhido, int numj, tp_jogador *j1, tp_jogador *j2, tp_jogador *j3, tp_jogador *j4){
@@ -189,7 +189,7 @@ void startamonte(tp_itemM *monteInicial){ //Funcao que vai definir o valor de ca
 }
 
 void sorteiaomonte(tp_itemM *monteInicial){ //Funcao que vai embaralhar as pecas dentro de um pilha.
-	int peca, peca1, cont=0;
+	int peca, peca1;
 	tp_itemM aux;
 		srand(time(NULL));
 		for(int i = 0; i < 500; i++){
@@ -220,126 +220,131 @@ void distribuir_monte(tp_itemM *monteInicial, tp_pilhaM *monteTrue, tp_jogador *
 	j3->QntPecas = 0;
 	j4->QntPecas = 0;
 
-	// cont=0;
-	// while(cont<28){
+	inicializa_pilha(&j1->mao); 
+	inicializa_pilha(&j2->mao);
+	inicializa_pilha(&j3->mao);
+	inicializa_pilha(&j4->mao);
+ 
+	// while(cont<28){ //CHECA para ver se as peças estão certas
 	// g = monteInicial[cont].esquerda;
 	// s = monteInicial[cont].direita;
 	// printf("%d %d\n", g, s);
 	// cont++;
 	// }
 
-printf("Teste 1\n");
-	while(cont<28){
+	while(cont<28){ //Tira as peças do vetor monteInicial e põe no monteTrue para serem usadas
 		k = monteInicial[cont];
 		push(monteTrue, k);
 		cont++;
 	}
 
-	
-	cont=0;
-	if(numj == 4){
+	if(numj == 4){ //Adiciona as peças as mãos dos 4 jogadores
+		cont=0;
 		while(cont<7){
 			pop(monteTrue, &e);
-			j1->mao[j] = e;
+			push(&j1->mao, e);
 			j1->QntPecas++;
 			i++;
 			pop(monteTrue, &e);
-			j2->mao[j] = e;
+			push(&j2->mao, e);
 			j2->QntPecas++;
 			i++;
 			pop(monteTrue, &e);
-			j3->mao[j] = e;
+			push(&j3->mao, e);
 			j3->QntPecas++;
 			i++;
 			pop(monteTrue, &e);
-			j4->mao[j] = e;
+			push(&j4->mao, e);
 			j4->QntPecas++;
 			i++;
 			j++;
 			cont++;
 		}
+
+		arrumaMao(&j1->mao);
+		arrumaMao(&j2->mao);
+		arrumaMao(&j3->mao);
+		arrumaMao(&j4->mao);
 	}	
 
-	if(numj == 2){
+	if(numj == 2){ //Adiciona as peças as mãos dos 2 jogadores
+		cont=0;
 		while(cont<7){
+			printf("Teste 4\n");
 			pop(monteTrue, &e);
-			j1->mao[j] = e;
+			push(&j1->mao, e);
+			printf("Teste 5\n");
+			
 			j1->QntPecas++;
 			i++;
 			pop(monteTrue, &e);
-			j2->mao[j] = e;
+			push(&j2->mao, e);
 			j2->QntPecas++;
 			i++;
 			j++;
 			cont++;
 		}
+
+	arrumaMao(&j1->mao); //Arruma as mãos dos jogadores 
+	arrumaMao(&j2->mao); //Arruma as mãos dos jogadores	
 	}
 
-	// cont=0;
-	// if(numj==2){ // MOSTRA AS PEÇAS PRA VER SE TA CERTO
-	// 	char nome1[100], nome2[100];
+	// if(numj==2){ //CHECA as peças na mão do jogadores para ver se está certo (2 jogadores)  
 	// 	printf("Nome jogador 1: %s\n", j1->name);
-	// 	printf("Quantidade de pecas jogador 1: %d\n", j1->QntPecas);
-	// 	while(cont<7){
-	// 		printf("%d ", j1->mao[cont].esquerda);
-	// 		printf("%d ", j1->mao[cont].direita);
-	// 		cont++;
-	// 	}
-
+	// 	printf("Quantidade de pecas jogador 1: %d\n", j1->QntPecas);	
+	// 	imprime_pilha(j1->mao);
 	// 	printf("\n");
-	
-	// 	cont=0;
 	// 	printf("Nome jogador 2: %s\n", j2->name);
 	// 	printf("Quantidade de pecas jogador 2: %d\n", j2->QntPecas);
-	// 	while(cont<7){
-	// 		printf("%d ", j2->mao[cont].esquerda);
-	// 		printf("%d ", j2->mao[cont].direita);
-	// 		cont++;
-	// 	}
+	// 	imprime_pilha(j2->mao);
 	// 	printf("\n");
 	// }
-
-	// cont=0;
-	// if(numj==4){ // MOSTRA AS PEÇAS PRA VER SE TA CERTO
-	// 	char nome1[100], nome2[100], nome3[100], nome4[100];
+	
+	// if(numj==4){ //CHECA as peças na mão do jogadores para ver se está certo (4 jogadores)
 	// 	printf("Nome jogador 1: %s\n", j1->name);
-	// 	printf("Quantidade de pecas jogador 1: %d\n", j1->QntPecas);
-	// 	while(cont<7){
-	// 		printf("%d ", j1->mao[cont].esquerda);
-	// 		printf("%d ", j1->mao[cont].direita);
-	// 		cont++;
-	// 	}
-
+	// 	printf("Quantidade de pecas jogador 1: %d\n", j1->QntPecas);	
+	// 	imprime_pilha(j1->mao);
 	// 	printf("\n");
-	// 	cont=0;
 	// 	printf("Nome jogador 2: %s\n", j2->name);
 	// 	printf("Quantidade de pecas jogador 2: %d\n", j2->QntPecas);
-	// 	while(cont<7){
-	// 		printf("%d ", j2->mao[cont].esquerda);
-	// 		printf("%d ", j2->mao[cont].direita);
-	// 		cont++;
-	// 	}
-
-	// 	printf("\n");
-	// 	cont=0;
+	// 	imprime_pilha(j2->mao);
+	// 	printf("\n");	
 	// 	printf("Nome jogador 3: %s\n", j3->name);
 	// 	printf("Quantidade de pecas jogador 3: %d\n", j3->QntPecas);
-	// 	while(cont<7){
-	// 		printf("%d ", j3->mao[cont].esquerda);
-	// 		printf("%d ", j3->mao[cont].direita);
-	// 		cont++;
-	// 	}
-
+	// 	imprime_pilha(j3->mao);
 	// 	printf("\n");
-	// 	cont=0;
 	// 	printf("Nome jogador 4: %s\n", j4->name);
 	// 	printf("Quantidade de pecas jogador 4: %d\n", j4->QntPecas);
-	// 	while(cont<7){
-	// 		printf("%d ", j4->mao[cont].esquerda);
-	// 		printf("%d ", j4->mao[cont].direita);
-	// 		cont++;
-	// 	}	
+	// 	imprime_pilha(j4->mao);
 	// }
+ 
+}
+
+void arrumaMao(tp_pilhaM *paux){
+	tp_itemM vetAux[7], e;
+	int c=0, n=7;
+	while(!pilha_vazia(paux)){
+		pop(paux, &e);
+		vetAux[c] = e;
+		c++;
+	}
+
+	for(int i= 1; i<n; i++){ //Uma simples função bubbleSort pra ordernar a pilha
+		for(int k = 0; k<n-1; k++){
+			if((vetAux[k].esquerda+vetAux[k].direita) > (vetAux[k+1].esquerda+vetAux[k+1].direita)){
+			e = vetAux[k];
+			vetAux[k] = vetAux[k+1];
+			vetAux[k+1] = e;
+			}
+		}
+	}	
+	
+	c=0;
+	while(c<7){
+		push(paux, vetAux[c]);
+		c++;
+	}
+
 }
 
 int main(){
@@ -355,9 +360,9 @@ int main(){
 		EscolheOsNomesDosJogadores(&numj, &j1, &j2, &j3, &j4); // Escolhe os nomes dos jogadores
 		Sorteador(&numj, &choosen); // Sorteia quem comeca.
 		EscolheOrdemJogadores(&choosen, numj, &j1, &j2, &j3, &j4); // 
-		startamonte(&monteInicial); // Inicia o monte com 28 peças
-		sorteiaomonte(&monteInicial); // Embaralhar o monte criado
-		distribuir_monte(&monteInicial, &monteTrue, &j1, &j2, &j3, &j4, numj); // Distribui o monte para os jogadores 
+		startamonte(monteInicial); // Inicia o monte com 28 peças
+		sorteiaomonte(monteInicial); // Embaralhar o monte criado
+		distribuir_monte(monteInicial, &monteTrue, &j1, &j2, &j3, &j4, numj); // Distribui o monte para os jogadores 
 	}
 	else printf("Percebi que voce desistiu. FRACO!\n"); //Não vai jogar/Deistencia. 	
 	
