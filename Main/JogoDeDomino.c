@@ -14,12 +14,12 @@
 #include <time.h>
 #include <Windows.h>
 #include "pilhaMonte.h"
-#include "ListaSEncadeada.h" 
+#include "ListaSEPedra.h" 
 
 	typedef struct{
 		char name[100];
 		int QntPecas;
-		tp_pilhaM mao;
+		tp_listase *mao;
 	}tp_jogador;
 
 void EscolheOrdemJogadores(int *escolhido, int numj, tp_jogador *j1, tp_jogador *j2, tp_jogador *j3, tp_jogador *j4){
@@ -28,7 +28,7 @@ void EscolheOrdemJogadores(int *escolhido, int numj, tp_jogador *j1, tp_jogador 
 			case 1:
 				printf ("Jogador %s comeca!\n", j1->name);
 					printf ("A ordem do escolhido sempre segue no sentido crescente!\nPrimeiro -> %s \nSegundo -> %s \nTerceiro-> %s\nQuarto -> %s\n", j1->name, j2->name, j3->name, j4->name);	
-
+				
 				break;		
 			case 2:
 				printf ("Jogador %s comeca!\n", j2->name);
@@ -48,17 +48,16 @@ void EscolheOrdemJogadores(int *escolhido, int numj, tp_jogador *j1, tp_jogador 
 		}
 	}	
 
-
 	if(numj == 2){
 		switch (*escolhido){
 			case 1:
 				printf ("Jogador %s comeca!\n", j1->name);
-					printf ("A ordem do escolhido sempre segue no sentido crescente!\nPrimeiro -> %s \nSegundo -> %s \n", j1->name, j2->name);	
+				printf ("A ordem do escolhido sempre segue no sentido crescente!\nPrimeiro -> %s \nSegundo -> %s \n", j1->name, j2->name);	
 
 				break;		
 			case 2:
 				printf ("Jogador %s comeca!\n", j2->name);
-					printf ("A ordem do escolhido sempre segue no sentido crescente!\nPrimeiro -> %s \nSegundo -> %s \n", j2->name, j1->name);	
+				printf ("A ordem do escolhido sempre segue no sentido crescente!\nPrimeiro -> %s \nSegundo -> %s \n", j2->name, j1->name);	
 		}
 	}	
 
@@ -219,11 +218,11 @@ void distribuir_monte(tp_itemM *monteInicial, tp_pilhaM *monteTrue, tp_jogador *
 	j2->QntPecas = 0;
 	j3->QntPecas = 0;
 	j4->QntPecas = 0;
-
-	inicializa_pilha(&j1->mao); 
-	inicializa_pilha(&j2->mao);
-	inicializa_pilha(&j3->mao);
-	inicializa_pilha(&j4->mao);
+	
+	j1->mao = inicializa_listase(); 
+	j2->mao = inicializa_listase();
+	j3->mao = inicializa_listase();
+	j4->mao = inicializa_listase();
  
 	// while(cont<28){ //CHECA para ver se as peças estão certas
 	// g = monteInicial[cont].esquerda;
@@ -242,89 +241,88 @@ void distribuir_monte(tp_itemM *monteInicial, tp_pilhaM *monteTrue, tp_jogador *
 		cont=0;
 		while(cont<7){
 			pop(monteTrue, &e);
-			push(&j1->mao, e);
+			printf("Teste 1");
+			insere_listase_no_fim(j1->mao, e);
+			printf("Teste 2");
 			j1->QntPecas++;
 			i++;
 			pop(monteTrue, &e);
-			push(&j2->mao, e);
+			insere_listase_no_fim(j2->mao, e);
 			j2->QntPecas++;
 			i++;
 			pop(monteTrue, &e);
-			push(&j3->mao, e);
+			insere_listase_no_fim(j3->mao, e);
 			j3->QntPecas++;
 			i++;
 			pop(monteTrue, &e);
-			push(&j4->mao, e);
+			insere_listase_no_fim(j4->mao, e);
 			j4->QntPecas++;
 			i++;
 			j++;
 			cont++;
 		}
 
-		arrumaMao(&j1->mao);
-		arrumaMao(&j2->mao);
-		arrumaMao(&j3->mao);
-		arrumaMao(&j4->mao);
+		arrumaMao(j1->mao);
+		arrumaMao(j2->mao);
+		arrumaMao(j3->mao);
+		arrumaMao(j4->mao);
 	}	
 
 	if(numj == 2){ //Adiciona as peças as mãos dos 2 jogadores
 		cont=0;
 		while(cont<7){
-			printf("Teste 4\n");
 			pop(monteTrue, &e);
-			push(&j1->mao, e);
-			printf("Teste 5\n");
-			
+			insere_listase_no_fim(j1->mao, e);
 			j1->QntPecas++;
 			i++;
 			pop(monteTrue, &e);
-			push(&j2->mao, e);
+			insere_listase_no_fim(j2->mao, e);
 			j2->QntPecas++;
 			i++;
 			j++;
 			cont++;
 		}
 
-	arrumaMao(&j1->mao); //Arruma as mãos dos jogadores 
-	arrumaMao(&j2->mao); //Arruma as mãos dos jogadores	
+	arrumaMao(j1->mao); //Arruma as mãos dos jogadores 
+	arrumaMao(j2->mao); //Arruma as mãos dos jogadores	
 	}
 
 	// if(numj==2){ //CHECA as peças na mão do jogadores para ver se está certo (2 jogadores)  
 	// 	printf("Nome jogador 1: %s\n", j1->name);
 	// 	printf("Quantidade de pecas jogador 1: %d\n", j1->QntPecas);	
-	// 	imprime_pilha(j1->mao);
+	// 	imprime_listase(j1->mao);
 	// 	printf("\n");
 	// 	printf("Nome jogador 2: %s\n", j2->name);
 	// 	printf("Quantidade de pecas jogador 2: %d\n", j2->QntPecas);
-	// 	imprime_pilha(j2->mao);
+	// 	imprime_listase(j2->mao);
 	// 	printf("\n");
 	// }
 	
-	// if(numj==4){ //CHECA as peças na mão do jogadores para ver se está certo (4 jogadores)
-	// 	printf("Nome jogador 1: %s\n", j1->name);
-	// 	printf("Quantidade de pecas jogador 1: %d\n", j1->QntPecas);	
-	// 	imprime_pilha(j1->mao);
-	// 	printf("\n");
-	// 	printf("Nome jogador 2: %s\n", j2->name);
-	// 	printf("Quantidade de pecas jogador 2: %d\n", j2->QntPecas);
-	// 	imprime_pilha(j2->mao);
-	// 	printf("\n");	
-	// 	printf("Nome jogador 3: %s\n", j3->name);
-	// 	printf("Quantidade de pecas jogador 3: %d\n", j3->QntPecas);
-	// 	imprime_pilha(j3->mao);
-	// 	printf("\n");
-	// 	printf("Nome jogador 4: %s\n", j4->name);
-	// 	printf("Quantidade de pecas jogador 4: %d\n", j4->QntPecas);
-	// 	imprime_pilha(j4->mao);
-	// }
+	if(numj==4){ //CHECA as peças na mão do jogadores para ver se está certo (4 jogadores)
+		printf("Nome jogador 1: %s\n", j1->name);
+		printf("Quantidade de pecas jogador 1: %d\n", j1->QntPecas);	
+		imprime_listase(j1->mao);
+		printf("\n");
+		printf("Nome jogador 2: %s\n", j2->name);
+		printf("Quantidade de pecas jogador 2: %d\n", j2->QntPecas);
+		imprime_listase(j2->mao);
+		printf("\n");	
+		printf("Nome jogador 3: %s\n", j3->name);
+		printf("Quantidade de pecas jogador 3: %d\n", j3->QntPecas);
+		imprime_listase(j3->mao);
+		printf("\n");
+		printf("Nome jogador 4: %s\n", j4->name);
+		printf("Quantidade de pecas jogador 4: %d\n", j4->QntPecas);
+		imprime_listase(j4->mao);
+	}
  
 }
 
-void arrumaMao(tp_pilhaM *paux){
+void arrumaMao(tp_pilhaM **paux){
 	tp_itemM vetAux[7], e;
 	int c=0, n=7;
-	while(!pilha_vazia(paux)){
-		pop(paux, &e);
+	while(!listase_vazia(paux)){
+		retiraUltimoDaLista(paux, &e);
 		vetAux[c] = e;
 		c++;
 	}
@@ -341,9 +339,21 @@ void arrumaMao(tp_pilhaM *paux){
 	
 	c=0;
 	while(c<7){
-		push(paux, vetAux[c]);
+		insere_listase_no_fim(paux, vetAux[c]);
 		c++;
 	}
+
+}
+
+void oJogoPara4(tp_pilhaM *cava, tp_jogador *j1, tp_jogador *j2, tp_jogador *j3, tp_jogador *j4, int qntJogadores, int escolhido){
+	EscolheOsNomesDosJogadores(qntJogadores, j1, j2, j3, j4);
+
+	
+
+}
+
+void oJogoPara2(tp_pilhaM *cava, tp_jogador *j1, tp_jogador *j2, int qntJogadores, int escolhido){
+
 
 }
 
@@ -363,6 +373,8 @@ int main(){
 		startamonte(monteInicial); // Inicia o monte com 28 peças
 		sorteiaomonte(monteInicial); // Embaralhar o monte criado
 		distribuir_monte(monteInicial, &monteTrue, &j1, &j2, &j3, &j4, numj); // Distribui o monte para os jogadores 
+		if(numj == 4) oJogoPara4(&monteTrue, &j1, &j2, &j3, &j4, numj, choosen);
+		if(numj == 2) oJogoPara2(&monteTrue, &j1, &j2, numj, choosen);
 	}
 	else printf("Percebi que voce desistiu. FRACO!\n"); //Não vai jogar/Deistencia. 	
 	

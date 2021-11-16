@@ -2,16 +2,11 @@
 #define PILHAmonte_H
 //td arquivo .h n pode ter main
 #include <stdio.h>
+#include "ListaSEPedra.h"
 #define MAX 28
 
 //tad - tipo abstrato de dado
 // 0 é falso e qq coisa != 0 é vdd
-typedef struct{
-		int esquerda, direita; 
-	}tp_pedra;
-
- typedef tp_pedra 
-     tp_itemM;
 
 typedef struct {
     int topo;  //guarda a posição do vetor onde está o elemento do topo
