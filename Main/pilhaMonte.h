@@ -1,9 +1,8 @@
 #ifndef PILHAmonte_H    //boa pratica, nome da biblioteca_h
 #define PILHAmonte_H
-//td arquivo .h n pode ter main
+#define MAX 28          //td arquivo .h n pode ter main
 #include <stdio.h>
 #include "ListaSEPedra.h"
-#define MAX 28
 
 //tad - tipo abstrato de dado
 // 0 é falso e qq coisa != 0 é vdd
@@ -38,10 +37,8 @@ int push(tp_pilhaM *p, tp_itemM e){
     return 1;
 }
 
-//smp q tiver pop tem q ter uma var aux
-int pop(tp_pilhaM*p, tp_itemM *e){
-    if (pilha_vazia(p)) return 0; //falha
-    *e = p-> item[p->topo];
+int pop(tp_pilhaM *p, tp_itemM *e){
+    *e = p->item[p->topo];
     p -> topo--;
     return 1;
 }
@@ -63,6 +60,5 @@ void imprime_pilha(tp_pilhaM  p){
     }
     printf("\n");
 }
-
 
 #endif   //fim da biblioteca pilha.h

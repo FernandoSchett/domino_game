@@ -6,6 +6,8 @@
     "*.tsx": "typescriptreact",
     ".env.*": "dotenv",
     "*.html": "html",
-    "pilha.h": "c"
-  }
+    "pilha.h": "c",
+    "listasepedra.h": "c"
+  },
+  "C_Cpp.errorSquiggles": "Disabled"
 }

@@ -5,7 +5,7 @@
 
 typedef struct{
 		int esquerda, direita; 
-	}tp_pedra;
+}tp_pedra;
 
 typedef tp_pedra tp_itemM;
 
@@ -33,26 +33,26 @@ int insere_listase_no_fim(tp_listase **l, tp_itemM e){
   tp_listase *novo_no, *atu;
   novo_no = aloca_listase();
   if(novo_no == NULL) return 0;
-  novo_no->info = e;
-  printf("Teste dentro");
+  novo_no -> info = e;
   if(listase_vazia(*l)){
+    printf("Esta vazia!!!!!\n");
     *l = novo_no;
-    printf("Teste dentro2");
-  } else{
-    printf("Teste dentro3");
+  }else{
     atu = *l;
     while(atu->prox != NULL){
       atu = atu->prox;
+      printf("Passei por um elemnto!!!!!!\n");
     }
-    atu->prox=novo_no;
+    printf("CHEGUEI NO FINAL!!!!!!\n");
+    atu->prox = novo_no;
   }
-printf("Teste dentro4");
-return 1;
+  return 1;
 }
 
 void imprime_listase(tp_listase *lista){
   tp_listase *atu;
   atu = lista;
+  
   while(atu!=NULL){
     printf("%d|%d\n", atu->info.esquerda, atu->info.direita);
     atu=atu->prox;
@@ -94,7 +94,7 @@ int tamanho_listase(tp_listase *lista){
 
 int retiraUltimoDaLista(tp_listase **lista, tp_pedra *e){
   tp_listase *atu, *aux;
-  tp_pedra k;
+  // tp_pedra k;
   if(listase_vazia(*lista)) return 0;
     
    else{
@@ -111,6 +111,5 @@ int retiraUltimoDaLista(tp_listase **lista, tp_pedra *e){
   
   return 1;
 }
-
 
 #endif
