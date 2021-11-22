@@ -22,5 +22,8 @@
                                 
 
 ----------------------------------------------------------------------------------------------
+***Main:***
 
-Pilha.h e Fila.h são duas bibliotecas criadas com o intuito de utilizar pilha e fila em C.
+JogoDeDomino.c é onde está localizado nosso int main, além de outras funções que são utilizadas para o funcionamento do código.
+
+ListaSEPedra.h e pilhaMonte.h são as blibiotecas criadas/adapatadas para serem utilizadas durante as necesidades do código.
