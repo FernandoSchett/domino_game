@@ -3,6 +3,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 
+
 typedef struct{
 		int esquerda, direita; 
 }tp_pedra;
@@ -34,16 +35,14 @@ int insere_listase_no_fim(tp_listase **l, tp_itemM e){
   novo_no = aloca_listase();
   if(novo_no == NULL) return 0;
   novo_no -> info = e;
+  novo_no -> prox = NULL;
   if(listase_vazia(*l)){
-    printf("Esta vazia!!!!!\n");
     *l = novo_no;
   }else{
     atu = *l;
     while(atu->prox != NULL){
-      atu = atu->prox;
-      printf("Passei por um elemnto!!!!!!\n");
-    }
-    printf("CHEGUEI NO FINAL!!!!!!\n");
+      atu = atu->prox;   
+    } 
     atu->prox = novo_no;
   }
   return 1;
@@ -93,23 +92,33 @@ int tamanho_listase(tp_listase *lista){
 }
 
 int retiraUltimoDaLista(tp_listase **lista, tp_pedra *e){
-  tp_listase *atu, *aux;
-  // tp_pedra k;
+  tp_listase *atu, *ant;
   if(listase_vazia(*lista)) return 0;
-    
-   else{
-    atu = *lista;
-    while(atu->prox != NULL){
-      atu = atu->prox;
-    }
-    aux = atu->prox;
-    *e = aux->info;
-    atu->prox=NULL;
-    free(aux);
-    aux = NULL;
+
+  atu = *lista;
+  while(atu->prox != NULL){
+    ant = atu;
+    atu = atu->prox;
   }
-  
+
+  *e = atu->info;
+  ant->prox = NULL;
+  free(atu);
+  atu = NULL;
   return 1;
+}
+
+int busca_listase(tp_listase *lista, tp_itemM e){ //Funcao busca se a peca que o jogador quer jogar esta presente na mao dele ou nao
+  tp_listase *atu;
+  atu = lista;
+  //printf("Atu->info fora: %d|%d\n", atu->info.esquerda, atu->info.direita);
+
+  while(atu!=NULL){ 
+    //printf("Atu->info dentro: %d|%d\n", atu->info.esquerda, atu->info.direita);
+    if ((atu->info.esquerda==e.esquerda) && (atu->info.direita==e.direita)) return 1;
+    atu = atu->prox;
+  }
+  return 0;
 }
 
 #endif
