@@ -38,6 +38,7 @@ int push(tp_pilhaM *p, tp_itemM e){
 }
 
 int pop(tp_pilhaM *p, tp_itemM *e){
+    if (pilha_vazia(p)) return 0; //falha
     *e = p->item[p->topo];
     p -> topo--;
     return 1;

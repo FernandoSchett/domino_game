@@ -74,7 +74,7 @@ void imprime_listad(tp_listad*lista, int ordem){
   switch(ordem){
     case 1: atu = lista->ini;
             while(atu!=NULL){
-              printf("%d|%d", atu->info.esquerda, atu->info.direita);
+              printf("%d|%d  ", atu->info.esquerda, atu->info.direita);
               atu=atu->prox;
             }
             break;
@@ -87,6 +87,42 @@ void imprime_listad(tp_listad*lista, int ordem){
     default: printf("codigo invalido");
   }
   printf("\n");
+}
+
+int checaSeDaPraJogarAPeca(tp_listad *lista, tp_itemM e){
+  if(e.esquerda == lista->fim->info.direita){
+    printf("sexo1");
+    insere_listad_na_direita(lista, e);
+    return 1;
+  }
+
+  if(e.direita == lista->fim->info.direita){
+    printf("sexo2");
+    int aux;
+    aux = e.esquerda;
+    e.esquerda = e.direita;
+    e.direita = aux;
+    insere_listad_na_direita(lista, e);
+    return 1;
+  }
+
+  if(e.esquerda == lista->fim->info.esquerda){
+    printf("sexo3");
+    int aux;
+    aux = e.esquerda;
+    e.esquerda = e.direita;
+    e.direita = aux;
+    insere_listad_na_esquerda(lista, e);
+    return 1;
+  }
+
+  if(e.direita == lista->fim->info.esquerda){
+    printf("sexo4");
+    insere_listad_na_esquerda(lista, e);
+    return 1;
+  }
+
+  return 0;
 }
 
 #endif

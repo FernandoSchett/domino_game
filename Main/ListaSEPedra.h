@@ -3,7 +3,6 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-
 typedef struct{
 		int esquerda, direita; 
 }tp_pedra;
@@ -53,21 +52,23 @@ void imprime_listase(tp_listase *lista){
   atu = lista;
   
   while(atu!=NULL){
-    printf("%d|%d\n", atu->info.esquerda, atu->info.direita);
+    printf("%d|%d  ", atu->info.esquerda, atu->info.direita);
     atu=atu->prox;
   }
+  printf("\n");
 }
 
 void jogaAPecaPelaPosicao(tp_listase **lista, tp_itemM *e, int i){
   tp_listase *ant, *atu;
   tp_pedra k;
-  int c=0;
+  int c=1;
   atu = *lista;
   ant = NULL;
-  while(c != i){
+  while(c < i){
     ant = atu;
     atu = atu->prox; 
     c++;
+    
   }
   if(ant == NULL){
     *lista = atu->prox;
@@ -75,9 +76,9 @@ void jogaAPecaPelaPosicao(tp_listase **lista, tp_itemM *e, int i){
     ant->prox = atu->prox;    
   }
   *e = atu->info;
+  atu->prox = NULL;
   free(atu);
   atu = NULL;
-
 }
 
 int tamanho_listase(tp_listase *lista){
@@ -120,5 +121,6 @@ int busca_listase(tp_listase *lista, tp_itemM e){ //Funcao busca se a peca que o
   }
   return 0;
 }
+
 
 #endif
