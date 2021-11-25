@@ -58,13 +58,13 @@ void imprime_listase(tp_listase *lista){
   }
 }
 
-tp_pedra jogaAPecaPelaPosicao(tp_listase **lista, int e){
+void jogaAPecaPelaPosicao(tp_listase **lista, tp_itemM *e, int i){
   tp_listase *ant, *atu;
   tp_pedra k;
   int c=0;
   atu = *lista;
   ant = NULL;
-  while(c != e){
+  while(c != i){
     ant = atu;
     atu = atu->prox; 
     c++;
@@ -74,10 +74,10 @@ tp_pedra jogaAPecaPelaPosicao(tp_listase **lista, int e){
   }else{
     ant->prox = atu->prox;    
   }
-  k = atu->info;
+  *e = atu->info;
   free(atu);
   atu = NULL;
-  return k;
+
 }
 
 int tamanho_listase(tp_listase *lista){

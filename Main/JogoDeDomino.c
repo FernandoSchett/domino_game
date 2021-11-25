@@ -16,6 +16,7 @@ Leonardo Trinchão, Github: github.com/leotrinchao
 #include <time.h>
 #include <Windows.h>
 #include "pilhaMonte.h" 
+#include "listaDE.h"
 
 typedef struct{ //Struct de tudo relacionado ao jogador
 	char name[100];
@@ -113,7 +114,7 @@ void arrumaMao(tp_listase **paux, int QntPecas){ //Funcao para arrumar a mao do 
 	}
 }
 
-void infojogadores(tp_jogador *jogadores, int numj){ //Funcao para printar tudo sobre a mao do jogador, utilizada para testes
+void infoJogadores(tp_jogador *jogadores, int numj){ //Funcao para printar tudo sobre a mao do jogador, utilizada para testes
 	for(int k = 0; k != numj; k++){ //Imprime a lista para ver se ta certo
 			printf("Nome do jogador numero %d: %s\n", k+1, jogadores[k].name);
 			printf("Quantidade de pecas: %d\n", jogadores[k].QntPecas);
@@ -122,6 +123,12 @@ void infojogadores(tp_jogador *jogadores, int numj){ //Funcao para printar tudo 
 			printf("\n");
 	}
 
+}
+
+void maoJogador(tp_listase *mao){
+	printf("Mao:\n");
+	imprime_listase(mao);
+	printf("\n");
 }
 
 void distribuir_monte(tp_itemM *monteInicial, tp_pilhaM *monteTrue, tp_jogador *jogadores, int numj, int *comecador){ //Funcao para distribuir o monte
@@ -142,12 +149,13 @@ void distribuir_monte(tp_itemM *monteInicial, tp_pilhaM *monteTrue, tp_jogador *
 		for(int k = 0; k < numj; k++){
 			pop(monteTrue, &e);
 			if(e.esquerda == 6 && e.direita ==6){
-				 *comecador = k + 1;
+				 *comecador = k;
 			}
 			insere_listase_no_fim(&jogadores[k].mao, e);
 			jogadores[k].QntPecas++;
 		}
 	}
+
 }
 
 void lendoNumj(int *numj){ //Funcao lendo quantos jogadores vao jogar
@@ -158,6 +166,72 @@ void lendoNumj(int *numj){ //Funcao lendo quantos jogadores vao jogar
 			printf("Insira um valor válido, pode-se apenas jogar com 2 ou 4 jogadores:\n");
     	scanf(" %d", numj);
 		}
+}
+
+void arrumaMaoDeTodos(tp_jogador *jogadores, int numj){
+	for(int i=0; i<numj; i++){
+		arrumaMao(&jogadores[i].mao, jogadores[i].QntPecas);
+	}
+}
+
+int checaQuantidade(tp_jogador *jogadores, int numj, char *vencedor){
+	for(int i=0; i<numj; i++){ 
+		if(jogadores[i].QntPecas==0){ 
+			vencedor = jogadores[i].name; 
+			return 0;
+		}
+	}
+	return 1;
+}
+
+int checaSeDaPraJogarAPeca(tp_listad *pecasNaMesa, tp_itemM e){
+	
+	return 1;
+}
+
+void jogo(tp_jogador *jogadores, int numj, tp_pilhaM *monteTrue, int comecador){
+	tp_itemM e;
+	tp_listad *pecasNaMesa;
+	int check=1, pos, possivel;
+	char vencedor[100], acao, lado;
+	
+	while(check){
+		for(int i=0; i<numj; i++){ //precisa de uma outra logica por causa do comecador
+			printf("Vez do jogador: %d", jogadores[i].name);
+			arrumaMao(&jogadores[i].mao, jogadores[i].QntPecas);
+			maoJogador(jogadores[i].mao);
+			
+			printf("\nO que gostaria de fazer? Cavar ou jogar: [C/J]\n");
+			scanf(" %s", acao);
+			while((acao != 'c') && (acao != 'j')){
+				printf("Entrada invalida! Atencao as entradas permitidas!!!");
+				printf("\nO que gostaria de fazer? Cavar ou jogar: [C/J]\n");
+				scanf(" %s", acao);
+			}
+
+			if(acao == 'c'){
+				pop(monteTrue, &e);
+				insere_listase_no_fim(&jogadores[i].mao, e);
+				jogadores[i].QntPecas++;
+			}
+
+			if(acao == 'j'){
+				printf("Posicao da peca que gostaria de jogar: \n");
+				scanf(" %d", pos);
+				printf("Onde gostaria de jogar a peca, esquerda ou direita: [E/D]\n");
+				scanf(" %s", lado);
+				jogaAPecaPelaPosicao(&jogadores[i].mao, &e, pos);
+				possivel = checaSeDaPraJogarAPeca(pecasNaMesa, e);
+				if(possivel == 1){
+				if(lado=='e') insere_listad_na_esquerda(pecasNaMesa, e);
+				if(lado=='d') insere_listad_na_direita(pecasNaMesa, e);
+				jogadores[i].QntPecas--;
+				}
+			}		
+		}
+		
+	  check = checaQuantidade(jogadores, numj, vencedor);
+	}
 }
 
 int main(){ //Sus
@@ -171,14 +245,12 @@ int main(){ //Sus
 		lendoNumj(&numj);
 		tp_jogador jogadores[numj];
 		EscolheOsNomesDosJogadores(numj, jogadores); // Escolhe os nomes dos jogadores
-		printf("\n");
 		startamonte(monteInicial); // Inicia o monte com 28 peças
 		sorteiaomonte(monteInicial); // Embaralhar o monte criado
 		distribuir_monte(monteInicial, &monteTrue, jogadores, numj, &comecador); // Distribui o monte para os jogadores 
-		for(int i=0; i<numj; i++){
-		arrumaMao(&jogadores[i].mao, jogadores[i].QntPecas);
-	}
-		infojogadores(jogadores, numj);	
+		arrumaMaoDeTodos(jogadores, numj);
+		infoJogadores(jogadores, numj);	
+		//jogo(jogadores, numj, &monteTrue, &comecador);
 }
 	else printf("Percebi que voce desistiu. FRACO!\n"); //Não vai jogar/Deistencia. 	
 
