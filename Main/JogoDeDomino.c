@@ -126,7 +126,6 @@ void infoJogadores(tp_jogador *jogadores, int numj){ //Funcao para printar tudo 
 }
 
 void maoJogador(tp_listase *mao){
-	printf("Mao:\n");
 	imprime_listase(mao);
 	printf("\n");
 }
@@ -151,10 +150,24 @@ void distribuir_monte(tp_itemM *monteInicial, tp_pilhaM *monteTrue, tp_jogador *
 			if(e.esquerda == 6 && e.direita ==6){
 				 *comecador = k;
 			}
+
 			insere_listase_no_fim(&jogadores[k].mao, e);
 			jogadores[k].QntPecas++;
 		}
 	}
+
+	int k;
+	tp_itemM buxa;
+	buxa.esquerda = 6;
+	buxa.direita = 6;
+	if(numj == 2){
+		for(int i = 0; i < numj; i++){
+		k = busca_listase(jogadores[i].mao, buxa);
+		}
+		printf("valor de k: %d\n", k);
+		if(!k) comecador=0;
+	}
+	printf("valor de comecador : %d\n", comecador);
 
 }
 
@@ -189,44 +202,58 @@ void mostraPecasNaMesa(tp_listad *p, int i){
 }
 
 void jogo(tp_jogador *jogadores, int numj, tp_pilhaM *monteTrue, int comecador){
-	tp_itemM e;
+	tp_itemM e, buxa;
+	buxa.esquerda = 6;
+	buxa.direita = 6;
 	tp_listad *pecasNaMesa;
 	pecasNaMesa = inicializa_listad();
-	int check=1, pos, possivelJogar, possivelCavar, vez, acaoCompleta;
+	int check=1, pos, possivelJogar, possivelCavar, vez, acaoCompleta, jogaBuxa, jogoCom2=0;
 	char vencedor[100], acao;
-	system("pause");
 	printf("\nAGORA COMECA O JOGO DE DOMINO BOA SORTE!\n");
 	while(check){
 		for(int i=comecador; i<numj; i++){ //precisa de uma outra logica por causa do comecador
-			vez=0;
-			possivelJogar=0;
-			possivelCavar=0;
-			acaoCompleta=0;
+			vez = possivelJogar = possivelCavar = acaoCompleta=0;
+			Pause();
 			while(!acaoCompleta){
 				arrumaMao(&jogadores[i].mao, jogadores[i].QntPecas);
-				if(vez==0){
-					printf("Vez do jogador: %s\n", jogadores[i].name);
-					maoJogador(jogadores[i].mao);
-					tp_itemM p;
-					p.esquerda = 6;
-					p.direita = 6;
-					int j = busca_listase(jogadores[i].mao, p);
-					if(j) {
-						retiraUltimoDaLista(&jogadores[i].mao, &e);
+				if(numj==2){ //So tem um problema: Quando vai jogar com 2 pessoas
+					for(i=0; i<numj; i++){
+						jogoCom2 = busca_listase(jogadores[i].mao, buxa);
+					}	
+
+					if(!jogoCom2){
+						printf("Como nenhum dos dois jogadores possui a buxa, ela foi jogada automaticamente!\n");
+						insere_listad_na_esquerda(pecasNaMesa, buxa);
+						acaoCompleta = 1;
 					}
 
 				}
+				
+				if(!vez){
+					printf("Vez do jogador: %s\n", jogadores[i].name);
+					jogaBuxa = busca_listase(jogadores[i].mao, buxa);
+					if(jogaBuxa) {
+						printf("Como voce tinha a peca 6|6 voce comecou jogando ela na mesa\n");
+						retiraUltimoDaLista(&jogadores[i].mao, &e);				
+						insere_listad_na_direita(pecasNaMesa, e);
+						acaoCompleta=1;
+					}
+					maoJogador(jogadores[i].mao);
+					printf("Pecas na mesa: ");
+					mostraPecasNaMesa(pecasNaMesa, 1);
+				}
 				vez++;
 
-				printf("O que gostaria de fazer? Cavar ou jogar: [C/J]\n");
-				scanf(" %c", &acao);
-
-				while((acao != 'c') && (acao != 'j')){
-					printf("Entrada invalida! Atencao as entradas permitidas!!!");
-					printf("\nO que gostaria de fazer? Cavar ou jogar: [C/J]\n");
+				if(!jogaBuxa){
+					printf("O que gostaria de fazer? Cavar, jogar ou passar: [C/J/P]\n");
 					scanf(" %c", &acao);
-				}
-
+					while((acao != 'c') && (acao != 'j') && (acao != 'p')){
+						printf("Entrada invalida! Atencao as entradas permitidas!!!");
+						printf("\nO que gostaria de fazer? Cavar, jogar ou passar: [C/J/P]\n");
+						scanf(" %c", &acao);
+					}
+				}	
+				
 				if(acao == 'c'){
 					possivelCavar = pop(monteTrue, &e);
 					if(possivelCavar){
@@ -236,13 +263,11 @@ void jogo(tp_jogador *jogadores, int numj, tp_pilhaM *monteTrue, int comecador){
 						maoJogador(jogadores[i].mao);
 						jogadores[i].QntPecas++;
 					}else{
-						printf("\nNao foi possivel cavar, o cava esta vazio. Certamente voce possui uma peca para jogar!\n");
+						printf("\nNao foi possivel cavar, o cava esta vazio. Talvez voce possua uma peca para jogar!\n");
 					}
 				}
 
 				if(acao == 'j'){
-					printf("Pecas na mesa: ");
-					mostraPecasNaMesa(pecasNaMesa, 1);
 					printf("Posicao da peca que gostaria de jogar: \n");
 					scanf(" %d", &pos);	
 					jogaAPecaPelaPosicao(&jogadores[i].mao, &e, pos);
@@ -252,10 +277,15 @@ void jogo(tp_jogador *jogadores, int numj, tp_pilhaM *monteTrue, int comecador){
 						 jogadores[i].QntPecas--;
 						 acaoCompleta = 1;
 					}	else {
+						insere_listase_no_fim(&jogadores[i].mao, e);
+						arrumaMao(&jogadores[i].mao, jogadores[i].QntPecas);
 						printf("Sua pedra nao pode ser jogada, chece os valores presentes nela!\n");
 					}
 				}
 
+				if(acao == 'p'){
+					acaoCompleta = 1;
+				}
 			}
 
 		}
@@ -263,6 +293,9 @@ void jogo(tp_jogador *jogadores, int numj, tp_pilhaM *monteTrue, int comecador){
 	  check = checaQuantidade(jogadores, numj, vencedor);
 		comecador=0;
 	}
+printf("\n-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
+printf("Jogador vencedor: %d", vencedor);
+printf("\n-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
 }
 
 int main(){ //Sus

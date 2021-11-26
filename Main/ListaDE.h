@@ -70,6 +70,7 @@ int insere_listad_na_esquerda(tp_listad *lista, tp_itemM e){
 
 void imprime_listad(tp_listad*lista, int ordem){
   if(lista==NULL) printf("Lista nao inicializada");
+  if(listad_vazia(lista)) printf("Nao ha pecas na mesa!");
   tp_nod *atu;
   switch(ordem){
     case 1: atu = lista->ini;
@@ -91,13 +92,11 @@ void imprime_listad(tp_listad*lista, int ordem){
 
 int checaSeDaPraJogarAPeca(tp_listad *lista, tp_itemM e){
   if(e.esquerda == lista->fim->info.direita){
-    printf("sexo1");
     insere_listad_na_direita(lista, e);
     return 1;
   }
 
   if(e.direita == lista->fim->info.direita){
-    printf("sexo2");
     int aux;
     aux = e.esquerda;
     e.esquerda = e.direita;
@@ -106,8 +105,7 @@ int checaSeDaPraJogarAPeca(tp_listad *lista, tp_itemM e){
     return 1;
   }
 
-  if(e.esquerda == lista->fim->info.esquerda){
-    printf("sexo3");
+  if(e.esquerda == lista->ini->info.esquerda){
     int aux;
     aux = e.esquerda;
     e.esquerda = e.direita;
@@ -116,8 +114,7 @@ int checaSeDaPraJogarAPeca(tp_listad *lista, tp_itemM e){
     return 1;
   }
 
-  if(e.direita == lista->fim->info.esquerda){
-    printf("sexo4");
+  if(e.direita == lista->ini->info.esquerda){
     insere_listad_na_esquerda(lista, e);
     return 1;
   }
