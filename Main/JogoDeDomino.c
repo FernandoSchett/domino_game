@@ -156,18 +156,18 @@ void distribuir_monte(tp_itemM *monteInicial, tp_pilhaM *monteTrue, tp_jogador *
 		}
 	}
 
-	int k;
+	int k, g=0;
 	tp_itemM buxa;
 	buxa.esquerda = 6;
 	buxa.direita = 6;
 	if(numj == 2){
 		for(int i = 0; i < numj; i++){
 		k = busca_listase(jogadores[i].mao, buxa);
+		g=k+g;
 		}
-		printf("valor de k: %d\n", k);
-		if(!k) comecador=0;
+		if(!g) *comecador=0;
 	}
-	printf("valor de comecador : %d\n", comecador);
+	
 
 }
 
@@ -207,7 +207,7 @@ void jogo(tp_jogador *jogadores, int numj, tp_pilhaM *monteTrue, int comecador){
 	buxa.direita = 6;
 	tp_listad *pecasNaMesa;
 	pecasNaMesa = inicializa_listad();
-	int check=1, pos, possivelJogar, possivelCavar, vez, acaoCompleta, jogaBuxa, jogoCom2=0;
+	int check=1, pos, possivelJogar, possivelCavar, vez, acaoCompleta, jogaBuxa, jogoCom2, l=0;
 	char vencedor[100], acao;
 	printf("\nAGORA COMECA O JOGO DE DOMINO BOA SORTE!\n");
 	while(check){
@@ -216,9 +216,10 @@ void jogo(tp_jogador *jogadores, int numj, tp_pilhaM *monteTrue, int comecador){
 			Pause();
 			while(!acaoCompleta){
 				arrumaMao(&jogadores[i].mao, jogadores[i].QntPecas);
-				if(numj==2){ //So tem um problema: Quando vai jogar com 2 pessoas
-					for(i=0; i<numj; i++){
-						jogoCom2 = busca_listase(jogadores[i].mao, buxa);
+				if(numj==2){ 
+					for(int i=0; i<numj; i++){
+						l = busca_listase(jogadores[i].mao, buxa);
+						jogoCom2 = l + jogoCom2;
 					}	
 
 					if(!jogoCom2){
@@ -226,7 +227,6 @@ void jogo(tp_jogador *jogadores, int numj, tp_pilhaM *monteTrue, int comecador){
 						insere_listad_na_esquerda(pecasNaMesa, buxa);
 						acaoCompleta = 1;
 					}
-
 				}
 				
 				if(!vez){
@@ -234,7 +234,8 @@ void jogo(tp_jogador *jogadores, int numj, tp_pilhaM *monteTrue, int comecador){
 					jogaBuxa = busca_listase(jogadores[i].mao, buxa);
 					if(jogaBuxa) {
 						printf("Como voce tinha a peca 6|6 voce comecou jogando ela na mesa\n");
-						retiraUltimoDaLista(&jogadores[i].mao, &e);				
+						retiraUltimoDaLista(&jogadores[i].mao, &e);	
+						printf("peca inserida: %d|%d\n", e.esquerda, e.direita);			
 						insere_listad_na_direita(pecasNaMesa, e);
 						acaoCompleta=1;
 					}

@@ -92,6 +92,7 @@ void imprime_listad(tp_listad*lista, int ordem){
 
 int checaSeDaPraJogarAPeca(tp_listad *lista, tp_itemM e){
   if(e.esquerda == lista->fim->info.direita){
+    printf("peca inserida: %d|%d\n", e.esquerda, e.direita);
     insere_listad_na_direita(lista, e);
     return 1;
   }
@@ -101,6 +102,7 @@ int checaSeDaPraJogarAPeca(tp_listad *lista, tp_itemM e){
     aux = e.esquerda;
     e.esquerda = e.direita;
     e.direita = aux;
+    printf("peca inserida: %d|%d\n", e.esquerda, e.direita);
     insere_listad_na_direita(lista, e);
     return 1;
   }
@@ -110,11 +112,13 @@ int checaSeDaPraJogarAPeca(tp_listad *lista, tp_itemM e){
     aux = e.esquerda;
     e.esquerda = e.direita;
     e.direita = aux;
+    printf("peca inserida: %d|%d\n", e.esquerda, e.direita);
     insere_listad_na_esquerda(lista, e);
     return 1;
   }
 
   if(e.direita == lista->ini->info.esquerda){
+    printf("peca inserida: %d|%d\n", e.esquerda, e.direita);
     insere_listad_na_esquerda(lista, e);
     return 1;
   }
