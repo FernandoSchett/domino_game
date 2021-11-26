@@ -1,39 +1,39 @@
 #ifndef LISTADE_H 
 #define LISTADE_H 
-#include "ListaSEPedra.h"
+#include "ListaSEPedra.h" //Incluindo a lista simplesmente encadeada
 #include <stdio.h>
 #include<stdlib.h>
 
-typedef struct tp_no_aux{
+typedef struct tp_no_aux{ //Struct do no duplamente encadeado
     struct tp_no_aux *ant;
     tp_itemM info;
     struct tp_no_aux *prox;
 }tp_nod;
 
-typedef struct{
+typedef struct{ //Struct da lista duplamente encadeada
   tp_nod *ini;
   tp_nod *fim;
 }tp_listad;
 
-tp_listad *inicializa_listad(){
+tp_listad *inicializa_listad(){ //Inicializando a lista duplamente encadeada
   tp_listad *lista = (tp_listad *)malloc(sizeof(tp_listad));
   lista->ini = NULL;
   lista->fim = NULL;
   return lista;
 }
 
-int listad_vazia(tp_listad *lista){
+int listad_vazia(tp_listad *lista){ //Detectando se a lista esta vazia 
   if(lista->ini == NULL) return 1;
   return 0;
 }
 
-tp_nod *aloca(){
+tp_nod *aloca(){ //Alocando memoria para o no
   tp_nod *pt;
   pt = (tp_nod *)malloc(sizeof(tp_nod));
   return pt; 
 }
 
-int insere_listad_na_direita(tp_listad *lista, tp_itemM e){
+int insere_listad_na_direita(tp_listad *lista, tp_itemM e){ //Coloca a peca na mesa na direita
   tp_nod *novo;
   novo=aloca();
   if(!novo) return 0;
@@ -51,7 +51,7 @@ int insere_listad_na_direita(tp_listad *lista, tp_itemM e){
   return 1;
 }
 
-int insere_listad_na_esquerda(tp_listad *lista, tp_itemM e){
+int insere_listad_na_esquerda(tp_listad *lista, tp_itemM e){ //Coloca a peca na mesa na esquerda
   tp_nod *novo;
   novo=aloca();
   if(!novo) return 0;
@@ -68,7 +68,7 @@ int insere_listad_na_esquerda(tp_listad *lista, tp_itemM e){
   return 1;
 }
 
-void imprime_listad(tp_listad*lista, int ordem){
+void imprime_listad(tp_listad*lista, int ordem){ //Imprime a lista duplamente encadeada
   if(lista==NULL) printf("Lista nao inicializada");
   if(listad_vazia(lista)) printf("Nao ha pecas na mesa!");
   tp_nod *atu;
@@ -90,7 +90,7 @@ void imprime_listad(tp_listad*lista, int ordem){
   printf("\n");
 }
 
-int checaSeDaPraJogarAPeca(tp_listad *lista, tp_itemM e){
+int checaSeDaPraJogarAPeca(tp_listad *lista, tp_itemM e){ //Funcao para ver se da pra jogar a peca
   if(e.esquerda == lista->fim->info.direita){
     printf("peca inserida: %d|%d\n", e.esquerda, e.direita);
     insere_listad_na_direita(lista, e);
@@ -126,4 +126,4 @@ int checaSeDaPraJogarAPeca(tp_listad *lista, tp_itemM e){
   return 0;
 }
 
-#endif
+#endif //Termino da boa pratica
