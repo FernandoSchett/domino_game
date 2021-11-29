@@ -160,6 +160,7 @@ void distribuir_monte(tp_itemM *monteInicial, tp_pilhaM *monteTrue, tp_jogador *
 	tp_itemM buxa;
 	buxa.esquerda = 6;
 	buxa.direita = 6;
+	
 	if(numj == 2){ //Logica para detectar se quando tiver 2 jogadores, algum deles pegou a peca 6\6
 		for(int i = 0; i < numj; i++){
 		k = busca_listase(jogadores[i].mao, buxa);
@@ -221,51 +222,62 @@ void retiraDaPilhaABuxaEJoga(tp_pilhaM *monteTrue){ //Funcao para tirar a buxa d
 
 void jogo(tp_jogador *jogadores, int numj, tp_pilhaM *monteTrue, int comecador){//Funcao com todo a logica do jogo
 	tp_itemM e, buxa; //Peca buxa
+	int check=1, pos, possivelJogar, possivelCavar, vez, acaoCompleta, jogaBuxa, locbuxa=0, u=1, i; //Variaveis usadas para a logica
+	char vencedor[100], acao; //Vencedor usada para receber o nome do ganhador e a acao eh usada para ler a acao do jogador
+	tp_listad *pecasNaMesa; //Lista duplamente encadeada com as pecas na mesa
+
 	buxa.esquerda = 6; //Atribuindo 6 na esquerda da peca
 	buxa.direita = 6; //Atribuindo 6 na direta da peca
-	tp_listad *pecasNaMesa; //Lista duplamente encadeada com as pecas na mesa
+	
 	pecasNaMesa = inicializa_listad(); //Inicializando as pecas na mesa
-	int check=1, pos, possivelJogar, possivelCavar, vez, acaoCompleta, jogaBuxa, jogoCom2=0, l=0,u=1, i; //Variaveis usadas para a logica
-	char vencedor[100], acao; //Vencedor usada para receber o nome do ganhador e a acao eh usada para ler a acao do jogador
 	printf("\nAGORA COMECA O JOGO DE DOMINO BOA SORTE!\n"); //Comeco do jogo
+	
 	while(check){ //Laco  para checar se alguem venceu
+		
 		for(i=comecador; i<numj; i++){ //Laço que vai correr todos os jogadores
-			vez = possivelJogar = possivelCavar = acaoCompleta=0;
+			vez = possivelJogar = possivelCavar = acaoCompleta = 0;
 			Pause();//Pausa e da clean no console
+			
 			while(!acaoCompleta){ //Laco que vai detectar se a acao do jogador foi completada
 				arrumaMao(&jogadores[i].mao, jogadores[i].QntPecas); //Arruma a mao do jogador
 
 				if(!vez){ //Laco feito para ser executado so na primeira vez na rodada de cada jogador
 					if(numj==2 && u==1){ //Laco para detectar se alguem tem a peca 6\6
+						
 						for(int i=0; i<numj; i++){//Laco para correr todos os jogadores
-							l = busca_listase(jogadores[i].mao, buxa); //Buscando para ver se tem a peca 6\6 na mao de algum jogador
-							jogoCom2 = l + jogoCom2; //Logica para detectar se encontrou alguma peca 6\6
+							locbuxa  = busca_listase(jogadores[i].mao, buxa)+locbuxa ; //Buscando para ver se tem a peca 6\6 na mao de algum jogador
+						 	//Logica para detectar se encontrou alguma peca 6\6
 						}	
 
-						if(!jogoCom2){ //Laco caso ninguem tenha a peca 2
+						if(!locbuxa){ //Laco caso ninguem tenha a peca 2
 							printf("Como nenhum dos dois jogadores possui a buxa, ela foi jogada automaticamente!\n");
 							retiraDaPilhaABuxaEJoga(monteTrue);//Funcao para tirar a peca 6\6 do monte
 							insere_listad_na_esquerda(pecasNaMesa, buxa); // Funcao para inserir a peca na esquerda
 							acaoCompleta=1; //Acao completa, sai do loop
 						}
+					
 					}
+
 					u=0;			
 					printf("Vez do jogador: %s\n", jogadores[i].name);
 					jogaBuxa = busca_listase(jogadores[i].mao, buxa); //Funcao para encontrar se alguem tem a buxa
+				
 					if(jogaBuxa) { //Funcao para fazer o jogador jogar a buxa obrigatoriamente
 						printf("Como voce tinha a peca 6|6 voce comecou jogando ela na mesa\n");
 						retiraUltimoDaLista(&jogadores[i].mao, &e);	//Funcao para jogar a peca 6\6
 						printf("Peca inserida: %d|%d\n", e.esquerda, e.direita);			
 						insere_listad_na_direita(pecasNaMesa, e); //Colocando a peca 6\6 na mesa
 						acaoCompleta=1; //Completando a acao
-						jogadores[i].QntPecas--; //Diminuindo a quantidade de pecas do jogador
+						jogadores[i].QntPecas--; //Diminuindo a quantidade de pecas do jogador					
+
 					}
+
 					maoJogador(jogadores[i].mao); //Mostra a mao do jogador
 					printf("Pecas na mesa: ");
 					mostraPecasNaMesa(pecasNaMesa, 1); //Mostra as pecas que estao na mesa
-				}
+				}		
 				vez++;
-
+				
 				if(!jogaBuxa){ //Funcao feita para ser executada caso o nao tenha sido jogada a buxa nessa rodada
 					printf("O que gostaria de fazer? Cavar, jogar ou passar: [C/J/P]\n"); 
 					scanf(" %c", &acao); //O jogador escolhe a acao que ele quer fazer 
@@ -316,17 +328,16 @@ void jogo(tp_jogador *jogadores, int numj, tp_pilhaM *monteTrue, int comecador){
 					acaoCompleta = 1; //Acao completa
 				}
 			}
-
 		}
 
-	  check = checaQuantidade(jogadores, numj, vencedor);	//Checa a quantidade de pecas de cada jogador para ver se alguem venceu
+		check = checaQuantidade(jogadores, numj, vencedor);	//Checa a quantidade de pecas de cada jogador para ver se alguem venceu
 		comecador=0; //Logica para resetar o comecador e pasasr por todos os jogadores
 	}
 
-Pause();	//Momento que eh dectado que algum jogador venceu, sendo o jogo finalizado
-printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
-printf("Jogador vencedor: %s", vencedor);
-printf("\n-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
+	Pause();	//Momento que eh dectado que algum jogador venceu, sendo o jogo finalizado
+	printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
+	printf("Jogador vencedor: %s", vencedor);
+	printf("\n-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
 }
 
 int main(){ //Funcao main do codigo
@@ -336,6 +347,7 @@ int main(){ //Funcao main do codigo
 	tp_itemM monteInicial[28]; // Iniciando o primeiro Monte
 	tp_pilhaM monteTrue; // Iniciando a pilha que vai ser usada
 	MenuDoJogo(&res); // Iniciando o menu jogo.
+
 	if (res){	//Vai jogar.
 		lendoNumj(&numj); //Lendo a quantidade de jogadores que vao jogar
 		tp_jogador jogadores[numj]; //Vetor com todos os jogadores 
@@ -346,8 +358,9 @@ int main(){ //Funcao main do codigo
 		arrumaMaoDeTodos(jogadores, numj);//Arrumar a mao de todos os jogadores
 		infoJogadores(jogadores, numj);	//Mostra a mao de todos os jogadores
 		jogo(jogadores, numj, &monteTrue, comecador); //O momento de jogar o jogo efetivamente começa aqui
-}
-	else printf("Percebi que voce desistiu. FRACO!\n"); //Não vai jogar/Deistencia. 	
-
+	}
+	else{ 
+		printf("Percebi que voce desistiu. FRACO!\n"); //Não vai jogar/deistência. 	
+	}
 	return 0;           
 }

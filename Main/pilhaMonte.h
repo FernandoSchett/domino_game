@@ -44,12 +44,6 @@ int pop(tp_pilhaM *p, tp_itemM *e){ //Funcao para tirar uma peca da pilha
     return 1;
 }
 
-int top(tp_pilhaM *p, tp_itemM *e) { //Funcao para detectar qual peca esta no topo 
-    if (pilha_vazia(p)) return 0; //falha
-    *e = p-> item[p->topo];
-    return 1;
-}
-
 void imprime_pilha(tp_pilhaM  p){ //Funcao para imprimir a pilha de pecas
     tp_itemM e;
     int g, k;
