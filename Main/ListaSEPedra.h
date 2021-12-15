@@ -50,11 +50,19 @@ int insere_listase_no_fim(tp_listase **l, tp_itemM e){ //Inserindo a peca no fin
 void imprime_listase(tp_listase *lista){ //Imprime as pecas do jogador
   tp_listase *atu;
   atu = lista;
+  int c=1, i=1;
   
   while(atu!=NULL){
     printf("%d|%d  ", atu->info.esquerda, atu->info.direita);
     atu=atu->prox;
+    c++;
   }
+  printf("\n");
+  while(i<c){
+    printf("%d    ", i);
+    i++;
+  }  
+
   printf("\n");
 }
 

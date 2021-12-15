@@ -10,7 +10,7 @@ Leonardo Trinchão, Github: github.com/leotrinchao
 
 #include <stdio.h>
 #include <string.h>
-#include <stdlib.h>
+#include <stdlib.h>  
 #include <locale.h>
 #include <conio.h> 
 #include <time.h>
@@ -230,7 +230,7 @@ void jogo(tp_jogador *jogadores, int numj, tp_pilhaM *monteTrue, int comecador){
 	buxa.direita = 6; //Atribuindo 6 na direta da peca
 	
 	pecasNaMesa = inicializa_listad(); //Inicializando as pecas na mesa
-	printf("\nAGORA COMECA O JOGO DE DOMINO BOA SORTE!\n"); //Comeco do jogo
+	printf("\nAGORA COMECA O JOGO DE DOMINO. BOA SORTE!\n"); //Comeco do jogo
 	
 	while(check){ //Laco  para checar se alguem venceu
 		
@@ -341,6 +341,7 @@ void jogo(tp_jogador *jogadores, int numj, tp_pilhaM *monteTrue, int comecador){
 }
 
 int main(){ //Funcao main do codigo
+
 	srand(time(NULL)); //Setando a semente de geracao de aleatoriedade para NULL
 	setlocale(LC_ALL, "Portuguese"); // Definindo a liguagem para português.
 	int numj, res, comecador; // Declarando as váriaveis.
@@ -356,7 +357,7 @@ int main(){ //Funcao main do codigo
 		sorteiaomonte(monteInicial); // Embaralhar o monte criado
 		distribuir_monte(monteInicial, &monteTrue, jogadores, numj, &comecador); // Distribui o monte para os jogadores 
 		arrumaMaoDeTodos(jogadores, numj);//Arrumar a mao de todos os jogadores
-		infoJogadores(jogadores, numj);	//Mostra a mao de todos os jogadores
+		// infoJogadores(jogadores, numj);	//Mostra a mao de todos os jogadores
 		jogo(jogadores, numj, &monteTrue, comecador); //O momento de jogar o jogo efetivamente começa aqui
 	}
 	else{ 
