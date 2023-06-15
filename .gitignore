@@ -1,0 +1,20 @@
+# Compiled files
+*.o
+*.out
+
+# Backup files
+*~
+
+# Editor-specific configuration files
+.vscode/
+
+# Log files
+*.log
+
+# Temporary files
+*.tmp
+
+# Output files
+*.exe
+*.dll
+
