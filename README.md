@@ -7,11 +7,12 @@
 </div>
 
 ## Developed by 💻:
+
 - [Fernando Schettini](https://github.com/FernandoSchett).
 - [Adrian Widmer](github.com/Awi-24).
 - [Gabriel Dunkel](https://github.com/gabrielsdunkel).
-- [Leonardo Trinchão](https://github.com/leotrinchao).
 - [Orlando Mota](https://github.com/orlandomotapires).
+- [Leonardo Trinchão](https://github.com/leotrinchao).
 
 ## Special thanks to 🥰:
 
@@ -75,7 +76,7 @@ Domino screens were developed to turn out to be like Figure 1.
 	<img height = "250em" src = "" />
     </a>
 </div>
-<h4 align="center">Figure 1 - Screens from Domino </h4>
+<h4 align="center">Figure 1 - Screens from Domino.</h4>
 
 ## Development Process ⚙️:
 
@@ -83,7 +84,7 @@ The development of the domino game in C was done informally, without any specifi
 
 ### Tools Used 🛠️: 
 
-- VSCode.
+- [VSCode](https://code.visualstudio.com/).
 
 ## How to contribute 🫂:
 
