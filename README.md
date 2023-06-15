@@ -73,7 +73,7 @@ Domino screens were developed to turn out to be like Figure 1.
 
 <div align="center">
 	<a href="">
-	<img height = "250em" src = "" />
+	<img height = "250em" src = "https://github.com/FernandoSchett/domino_game/assets/80331486/6743c0d6-6b2d-415e-95fd-154cc5defa5f" />
     </a>
 </div>
 <h4 align="center">Figure 1 - Screens from Domino.</h4>
