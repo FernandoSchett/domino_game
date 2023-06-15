@@ -1,4 +1,19 @@
- /*
+/*
+
+File:           domino_game.cpp
+Last changed:   14/06/2023 23:29
+Purpose:        Console-based domnino game         
+Authors:        Fernando Antônio Marques Schettini
+				Adrian Widmer
+				Gabriel Souza Dunkel
+                Orlando Mota Pires
+				Leonardo Trinchão  
+Usage: 
+  HowToCompile:   gcc domino_game.cpp -o domino_game
+  HowToExecute:   ./domino_game         
+*/
+
+/*
 Esse programa é responsável por simular um jogo de dominó,com 2 ou 4 jogarores em cada partida.
 Desenvolvido por:
 Fernando Schettini, Github: github.com/FernandoSchett 
