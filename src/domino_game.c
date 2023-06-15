@@ -1,5 +1,4 @@
 /*
-
 File:           domino_game.cpp
 Last changed:   14/06/2023 23:29
 Purpose:        Console-based domnino game         
@@ -9,18 +8,8 @@ Authors:        Fernando Antônio Marques Schettini
                 Orlando Mota Pires
 				Leonardo Trinchão  
 Usage: 
-  HowToCompile:   gcc domino_game.cpp -o domino_game
-  HowToExecute:   ./domino_game         
-*/
-
-/*
-Esse programa é responsável por simular um jogo de dominó,com 2 ou 4 jogarores em cada partida.
-Desenvolvido por:
-Fernando Schettini, Github: github.com/FernandoSchett 
-Gabriel Souza Dunkel, Github: github.com/gabrielsdunkel
-Orlando Mota Pires, Github: github.com/orlandomotapires 
-Adrian Widmer, Github: github.com/Awi-24
-Leonardo Trinchão, Github: github.com/leotrinchao 
+	HowToCompile:   gcc domino_game.c -o domino_game
+	HowToExecute:   ./domino_game         
 */
 
 #include <stdio.h>
@@ -30,8 +19,8 @@ Leonardo Trinchão, Github: github.com/leotrinchao
 #include <conio.h> 
 #include <time.h>
 #include <Windows.h>
-#include "pilhaMonte.h" 
-#include "listaDE.h"
+#include "../libraries/pilhaMonte.h" 
+#include "../libraries/ListaDE.h"
 
 typedef struct{ //Struct de tudo relacionado ao jogador
 	char name[100];
