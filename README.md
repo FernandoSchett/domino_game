@@ -59,7 +59,7 @@ Make sure you have all dependencies before running this domino game.
 
 ## How to run it 🏃:
 
-First, clone this repository. After that, simply compile the ``./src/`domino_game.c``` file with the command:
+First, clone this repository. After that, simply compile the ``./src/domino_game.c``` file with the command:
 
     gcc ./src/domino_game.c -o domino_game
 
