@@ -16,7 +16,7 @@
 
 ## Special thanks to 🥰:
 
-- Marcio Soussa, our teacher, your experience and knowledge have been invaluable to our progress.
+- [Márcio Soussa](https://www.linkedin.com/in/marcio-soussa/?originalSubdomain=br), our teacher, your experience and knowledge have been invaluable to our progress.
 
 ## About 🤔:
 
