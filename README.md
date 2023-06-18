@@ -52,8 +52,8 @@ By utilizing these algorithms and data structures, the game efficiently manages 
 
 Domino game dependencies are the standart C and C++ libraries and:
 
-- <conio.h>.
-- <Windows.h>.
+- ```<conio.h>```.
+- ```<Windows.h>```.
 
 Make sure you have all dependencies before running this domino game.
 
